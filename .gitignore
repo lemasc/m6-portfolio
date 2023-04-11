@@ -3,6 +3,15 @@ dist/
 # generated types
 .astro/
 
+# Yarn 2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # dependencies
 node_modules/
 
