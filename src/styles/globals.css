@@ -4,9 +4,12 @@
 
 @layer components {
   h1 {
-    @apply font-semibold text-2xl;
+    @apply font-semibold text-5xl;
+  }
+  h2 {
+    @apply font-semibold text-4xl;
   }
   b {
-    @apply font-semibold;
+    @apply font-medium;
   }
 }

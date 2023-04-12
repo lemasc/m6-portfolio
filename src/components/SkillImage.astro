@@ -1,0 +1,22 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  href: string;
+}
+
+const { alt, href, src, height = 60, width = 60 } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  draggable="false"
+  rel="noopener noreferrer"
+  class="opacity-60 hover:opacity-100 scale-100 hover:scale-110 transform duration-150 ease-in"
+  title={alt}
+>
+  <img src={src} alt={alt} width={width} height={height} />
+</a>
