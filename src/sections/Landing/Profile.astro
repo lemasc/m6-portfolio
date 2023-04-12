@@ -1,27 +1,41 @@
 ---
+import "./styles/Profile.css";
+
 import { Image } from "@astrojs/image/components";
+import { classNames } from "@/utils";
+import { defaultClassName } from "./statics";
+import { getI18nMarkdown } from "@/utils/i18n";
+
+const entry = await getI18nMarkdown("landing", "profile", {
+  url: Astro.url,
+});
+const { Content } = await entry.render();
 ---
 
-<section id="profile" class="flex flex-col items-center justify-center p-8">
-  <div class="flex flex-row gap-10 w-full max-w-4xl p-8">
-    <div class="overflow-hidden flex-shrink-0 max-h-[400px]">
+<section
+  id="profile"
+  class={classNames(
+    "flex flex-col items-center justify-center p-8",
+    defaultClassName
+  )}
+>
+  <div class="flex flex-col md:flex-row gap-10 w-full max-w-5xl md:p-8">
+    <div class="overflow-hidden md:flex-shrink-0">
       <Image
         src="/images/my-profile.jpg"
-        class="rounded object-cover w-full h-full object-[50%_60%]"
+        class="rounded w-full h-full max-h-[400px]"
         alt="Profile"
+        aspectRatio={1}
         width={400}
-        height={600}
+        height={400}
+        position={"center"}
+        fit="cover"
       />
     </div>
     <div class="flex flex-grow flex-col items-start justify-center p-4">
-      <div class="flex flex-col gap-4">
-        <h2 class="py-4">สวัสดีครับ 🙇‍♂️</h2>
-        <p>
-          ผมชื่อ <b>นายศักดิธัช ธนาสดใส</b> ชื่อเล่นชื่อ <b>ซาน</b>
-          กำลังศึกษาอยู่ในระดับชั้นมัธยมศึกษาปีที่ 6 แผนการเรียนวิทยาศาสตร์-คณิตศาสตร์
-          เกิดวันที่ 20 มกราคม พ.ศ. 2549 ปัจจุบันอายุ 17 ปีครับ
-        </p>
-      </div>
+      <article class="flex flex-col gap-4">
+        <Content />
+      </article>
     </div>
   </div>
 </section>

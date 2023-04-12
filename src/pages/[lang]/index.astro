@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Landing from "@/sections/Landing/index.astro";
+import { redirectToDefaultLanguage } from "@/utils/language";
+
+const redirect = redirectToDefaultLanguage(Astro.url, Astro.redirect);
+if (redirect) {
+  return redirect;
+}
+---
+
+<BaseLayout transparent title="Index">
+  <main
+    class="scroll-my-6 snap-y snap-mandatory w-screen h-screen overflow-y-scroll md:text-lg"
+  >
+    <Landing />
+  </main>
+</BaseLayout>

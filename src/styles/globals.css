@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer base {
   h1 {
     @apply font-semibold text-5xl;
   }
@@ -11,5 +11,26 @@
   }
   b {
     @apply font-medium;
+  }
+  p {
+    @apply leading-7;
+  }
+}
+
+@layer components {
+  a.btn {
+    @apply select-none hover:cursor-pointer;
+  }
+  .btn {
+    @apply rounded-lg px-6 py-3 font-medium focus:outline-none;
+  }
+  .btn:not(.text-lg) {
+    @apply px-6 py-3;
+  }
+  .btn.text-lg {
+    @apply px-4 py-2;
+  }
+  .btn-outline {
+    @apply border transition-colors ease-in-out duration-300;
   }
 }

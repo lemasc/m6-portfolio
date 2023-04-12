@@ -1,29 +1,27 @@
 ---
+import "./styles/Intro.css";
+
 import { Image } from "@astrojs/image/components";
+import { classNames } from "@/utils";
+import { defaultClassName } from "../statics";
+import { getI18nMarkdown } from "@/utils/i18n";
+
+const entry = await getI18nMarkdown("landing", "student-council-intro", {
+  url: Astro.url,
+});
+const { Content } = await entry.render();
 ---
 
-<section id="student-council-intro" class="relative overflow-hidden">
-  <div class="inline-block overflow-hidden absolute w-full h-full z-10 p-8">
-    <div
-      class="flex flex-col items-center justify-center gap-8 w-full p-8 h-full text-white"
+<section
+  id="student-council-intro"
+  class={classNames("relative overflow-hidden", defaultClassName)}
+>
+  <div class="inline-block overflow-hidden absolute w-full h-full z-[1] p-8">
+    <article
+      class="flex flex-col text-center items-center justify-center w-full md:p-8 h-full text-white"
     >
-      <header class="flex flex-col gap-4 text-center">
-        <span class="text-xl">ผลงานที่สำคัญ</span>
-        <h1 class="text-4xl font-bold drop-shadow-lg">
-          ดำรงตำแหน่งรองประธานนักเรียนฝ่ายเทคโนโลยีสารสนเทศ
-        </h1>
-      </header>
-      <p class="text-lg">
-        ผมได้รับตำแหน่งให้เป็นรองประธานนักเรียนฝ่ายเทคโนโลยีสารสนเทศ
-        คณะกรรมการนักเรียน ประจำปีการศึกษา 2565
-      </p>
-      <a
-        class="border select-none hover:cursor-pointer border-white rounded-lg px-6 py-3 font-medium text-lg hover:bg-white hover:bg-opacity-90 hover:text-black focus:outline-none focus:text-black focus:bg-white focus:bg-opacity-90"
-        role="button"
-      >
-        ดูผลงานต่าง ๆ
-      </a>
-    </div>
+      <Content />
+    </article>
   </div>
   <Image
     src="/images/student-council/landing.jpg"
