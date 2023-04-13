@@ -22,15 +22,13 @@
     @apply select-none hover:cursor-pointer;
   }
   .btn {
-    @apply rounded-lg px-6 py-3 font-medium focus:outline-none;
+    @apply rounded-lg font-medium focus:outline-none;
+    @apply border transition-colors ease-in-out duration-300;
   }
   .btn:not(.text-lg) {
-    @apply px-6 py-3;
-  }
-  .btn.text-lg {
     @apply px-4 py-2;
   }
-  .btn-outline {
-    @apply border transition-colors ease-in-out duration-300;
+  .btn.text-lg {
+    @apply px-6 py-3;
   }
 }

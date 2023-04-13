@@ -1,10 +1,10 @@
 import { classNames } from "@/utils";
 import { useEffect, useState } from "react";
 
-export type Props = {
+export interface Props {
   className?: string;
   children: React.ReactNode;
-};
+}
 
 export const Navbar: React.FC<Props> = ({ className, children }) => {
   const [top, setTop] = useState(true);

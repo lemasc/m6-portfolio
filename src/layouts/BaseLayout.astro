@@ -5,17 +5,24 @@ import "@fontsource/mitr/300.css";
 import "@fontsource/mitr/400.css";
 import "@fontsource/mitr/500.css";
 import "@fontsource/mitr/600.css";
+
+import "@fortawesome/fontawesome-free/css/fontawesome.css";
+import "@fortawesome/fontawesome-free/css/solid.css";
+import "@fortawesome/fontawesome-free/css/brands.css";
+
 import "../styles/globals.css";
+import { getLanguage } from "@/utils/language";
 
 interface Props {
   title: string;
   transparent?: boolean;
 }
 
+const { language } = getLanguage(Astro.url, true);
 const { title, transparent } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
