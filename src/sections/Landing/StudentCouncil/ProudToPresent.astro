@@ -3,17 +3,11 @@ import { Image } from "@astrojs/image/components";
 import { classNames } from "@/utils";
 import { defaultClassName } from "../statics";
 import { getI18nMarkdown } from "@/utils/i18n";
+import { l } from "astro-i18n";
 
-const { data, collection, slug } = await getI18nMarkdown(
-  "projects",
-  "pm-station",
-  {
-    url: Astro.url,
-  }
-);
-
-const [lang, id] = slug.split("/");
-const link = [lang, collection, id].join("/");
+const { data } = await getI18nMarkdown("projects", "pm-station", {
+  url: Astro.url,
+});
 ---
 
 <section
@@ -26,14 +20,14 @@ const link = [lang, collection, id].join("/");
   <div class="flex flex-col items-center justify-center gap-10 w-full md:p-8">
     <h2>ผลงานที่ภูมิใจนำเสนอ</h2>
     <div
-      class="flex flex-col md:flex-row gap-10 w-full max-w-6xl bg-gray-50 rounded-lg shadow-lg"
+      class="flex flex-col md:flex-row md:gap-10 w-full max-w-6xl bg-gray-50 rounded-lg shadow-lg"
     >
       <div class="flex flex-grow flex-col items-start justify-center">
         <article class="flex flex-col gap-4 p-8">
           <h3 class="font-semibold text-3xl">{data.title}</h3>
           <p>{data.description}</p>
           <a
-            href={`/${link}`}
+            href={l("/projects/pm-station")}
             class="btn text-lg bg-gray-800 text-white hover:bg-black arrow-right"
           >
             ดูรายละเอียดเพิ่มเติม</a

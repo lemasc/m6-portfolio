@@ -9,10 +9,26 @@
   h2 {
     @apply font-semibold text-4xl;
   }
+  h3 {
+    @apply font-medium text-2xl;
+  }
   b {
     @apply font-medium;
   }
   p {
+    @apply leading-7;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol,
+  ul {
+    @apply list-inside px-2 space-y-2;
+  }
+  li {
     @apply leading-7;
   }
 }

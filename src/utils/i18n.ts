@@ -1,10 +1,10 @@
 import { getEntryBySlug } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { collections } from "@/content/config";
-import { getLanguage, Language } from "./language";
+import { astroI18n } from "astro-i18n";
 
 export type I18nEntry<E> = E extends `${infer Lang}/${infer Entry}`
-  ? Lang extends Language
+  ? Lang extends LangCode
     ? Entry
     : never
   : never;
@@ -28,14 +28,14 @@ export async function getI18nMarkdown<
   entrySlug: I,
   { url }: GetI18nMarkdownOptions
 ): Promise<CollectionEntry<C>> {
-  const { language } = getLanguage(url, true);
+  const language = astroI18n.langCode;
   const entry = (await getEntryBySlug<C, E>(
     collection,
     `${language}/${entrySlug}`
   )) as CollectionEntry<C>;
   if (!entry) {
     throw new Error(
-      `No entry ${entrySlug} found in ${collection} for the language "${language}"`
+      `No entry '${entrySlug}' found in '${collection}' for the language '${language}'.`
     );
   }
   return entry;

@@ -8,7 +8,8 @@ const projectsCollection = defineCollection({
     releaseDate: z.date(),
     tags: z.array(z.string()),
     image: z.string().optional(),
-    featured: z.boolean().optional(),
+    gitUrl: z.string().optional(),
+    rating: z.number(),
   }),
 });
 

@@ -11,28 +11,37 @@ import "@fortawesome/fontawesome-free/css/solid.css";
 import "@fortawesome/fontawesome-free/css/brands.css";
 
 import "../styles/globals.css";
-import { getLanguage } from "@/utils/language";
+import { astroI18n, l, t } from "astro-i18n";
+import { HrefLangs } from "astro-i18n/components";
+import type { NavigationItem } from "@/components/Navbar/types";
 
 interface Props {
   title: string;
   transparent?: boolean;
 }
 
-const { language } = getLanguage(Astro.url, true);
+const language = astroI18n.langCode;
 const { title, transparent } = Astro.props;
+const pathname = l(Astro.url.pathname);
+
+const navigation: NavigationItem[] = [
+  { name: t("nav.home"), href: l("/", undefined) },
+  { name: t("nav.projects"), href: l("/projects") },
+];
 ---
 
 <html lang={language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
+    <title>{title} - Portfolio</title>
+    <HrefLangs />
   </head>
-  <body class="font-light h-full min-h-screen flex flex-col">
-    <Navbar client:load>
+  <body class="font-light flex flex-col h-full min-h-screen">
+    <Navbar navigation={navigation} currentRoute={pathname} client:load>
       <span>Nav</span>
     </Navbar>
-    <div class={classNames(transparent && "-mt-16", "h-full flex-1 flex-grow")}>
+    <div class={"h-full flex-1 flex-grow"}>
       <slot />
     </div>
   </body>
