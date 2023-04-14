@@ -1,3 +1,4 @@
+import { t } from "astro-i18n";
 import { classNames } from "@/utils";
 
 type Badge = {
@@ -10,17 +11,17 @@ const getBadge = (tag: string): Badge => {
     case "student-council":
       return {
         className: "bg-purple-100 text-purple-700",
-        label: "คณะกรรมการนักเรียน",
+        label: t("tags.student-council"),
       };
     case "website":
       return {
         className: "bg-green-100 text-green-700",
-        label: "เว็บไซต์",
+        label: t("tags.website"),
       };
     case "year 2565":
       return {
         className: "bg-blue-100 text-blue-700",
-        label: "ปี 2565",
+        label: t("tags.year 2565"),
       };
   }
   return {

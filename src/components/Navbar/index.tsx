@@ -37,7 +37,7 @@ export function Navbar({
         <div
           className={classNames(
             "absolute top-0 w-full",
-            top ? "bg-transparent" : "bg-yellow-50 bg-opacity-90",
+            top && !open ? "bg-transparent" : "bg-yellow-50 bg-opacity-90",
             "transition-colors ease-in duration-300"
           )}
         >
@@ -71,7 +71,7 @@ export function Navbar({
                           item.matched
                             ? "font-normal"
                             : "opacity-60 hover:opacity-100",
-                          "text-black text-sm transition-all duration-300 ease-in"
+                          "text-black transition-all duration-300 ease-in"
                         )}
                         aria-current={item.matched ? "page" : undefined}
                       >
@@ -87,11 +87,11 @@ export function Navbar({
           <Transition
             enter={"transition-all duration-500"}
             enterFrom={"opacity-0 scale-75"}
-            enterTo={"opacity-100 scale-100"}
+            enterTo={"opacity-100 scale-100 z-50"}
             leave={"transition-all duration-500"}
             leaveFrom={"opacity-100 scale-100"}
             leaveTo={"opacity-0 scale-75"}
-            className="h-full min-h-[calc(100vh-96px)] w-full sm:hidden"
+            className="h-full min-h-screen w-full sm:hidden"
           >
             <Disclosure.Panel static>
               <div className="space-y-2 px-6">
