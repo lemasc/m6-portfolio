@@ -11,7 +11,10 @@ export const RatingStar = ({
   return (
     <div title={title}>
       {[...Array(5)].map((_, i) => (
-        <i className={`fa fa-star ${i <= rating ? "text-yellow-400" : ""}`}></i>
+        <i
+          key={`star_${i}`}
+          className={`fa fa-star ${i <= rating ? "text-yellow-400" : ""}`}
+        ></i>
       ))}
     </div>
   );

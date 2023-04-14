@@ -1,19 +1,35 @@
 ---
 import { classNames } from "@/utils";
+import { Image } from "@astrojs/image/components";
 import { defaultClassName } from "./statics";
 ---
 
 <section
   id="intro"
   class={classNames(
-    `flex flex-col items-center justify-center bg-gray-50 p-6`,
+    `flex items-start justify-center bg-yellow-50 p-6`,
     defaultClassName
   )}
 >
   <div
-    class="max-w-3xl flex flex-col gap-6 p-8 h-full items-center justify-center text-center min-h-[30vw]"
+    class="max-w-5xl w-full flex flex-row p-8 h-full items-center justify-start"
   >
-    <h1>Hello!</h1>
-    <p class="text-xl">To Be Filled.</p>
+    <div
+      class="flex flex-col flex-grow items-start justify-center gap-6 text-xl"
+    >
+      <h1>Hello!</h1>
+      <p class="text-xl">To Be Filled.</p>
+    </div>
+    <div class="relative">
+      <div class="bg-amber-300 bg-opacity-50 pt-6">
+        <Image
+          src="/images/landing.png"
+          alt="Landing"
+          width={400}
+          height={400}
+        />
+      </div>
+      <div></div>
+    </div>
   </div>
 </section>

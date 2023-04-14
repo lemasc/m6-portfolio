@@ -26,11 +26,15 @@
   }
   ol,
   ul {
-    @apply list-inside px-2 space-y-2;
+    @apply list-inside lg:px-2 lg:space-y-2 text-sm md:text-base;
   }
   li {
     @apply leading-7;
   }
+}
+
+#intro p {
+  @apply text-lg md:text-xl;
 }
 
 @layer components {
