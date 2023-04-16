@@ -18,10 +18,11 @@ const getBadge = (tag: string): Badge => {
         className: "bg-green-100 text-green-700",
         label: t("tags.website"),
       };
+    case "year 2564":
     case "year 2565":
       return {
         className: "bg-blue-100 text-blue-700",
-        label: t("tags.year 2565"),
+        label: t("tags.year", { year: tag.split(" ").pop() as string }),
       };
   }
   return {

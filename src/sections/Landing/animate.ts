@@ -16,7 +16,7 @@ export const animate = (parent: HTMLElement | null) => {
               opacity: [0, 1],
               duration: 500,
               easing: "easeInOutQuad",
-              delay: 300,
+              delay: 200,
             });
           }
           timeline.play();

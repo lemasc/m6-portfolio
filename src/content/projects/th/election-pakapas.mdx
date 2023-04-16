@@ -1,0 +1,44 @@
+---
+title: เว็บไซต์ผู้สมัครรับเลือกตั้งประธานนักเรียน "ภคภ1ส"
+description: เว็บไซต์สำหรับช่วยเหลือนักเรียนชาว พ.ม. ในการเข้าเรียนออนไลน์ผ่านโปรแกรม Zoom ในช่วงสถานการณ์การแพร่ระบาดของเชื้อไวรัส COVID-19
+releaseDate: 2022-07-24
+tags:
+  - year 2565
+  - website
+gitUrl: https://github.com/lemasc/election-pakapas
+publicUrl: https://pakapas.netlify.app
+rating: 3
+---
+
+import GithubEmbed from "@/components/markdown/GithubEmbed.astro";
+import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
+
+## ที่มาของผลงาน
+
+ผมได้ช่วยหาเสียงให้แก่ **นายภคภาส อัศวศิริวิลาศ** ผู้สมัครรับเลือกตั้งประธานนักเรียน ประจำปีการศึกษา 2565
+หมายเลข 1 โดยจัดทำเว็บไซต์สำหรับประชาสัมพันธ์รายละเอียดและนโยบายต่าง ๆ ของผู้สมัคร
+
+## หลักการทำงาน
+
+เว็บไซต์นี้จัดทำโดยใช้ภาษา TypeScript เลือกใช้ Next.js เป็น React Framework สำหรับการพัฒนา
+และเผยแพร่เว็บไซต์นี้ผ่านทางแพลตฟอร์ม Netlify
+
+<ResponsiveBanner />
+
+เว็บไซต์นี้ประกอบด้วย 2 ส่วนหลัก ๆ ดังต่อไปนี้
+
+### 1) นโยบาย
+
+นโยบายทั้งหมดในเว็บไซต์นี้ ถูกเขียนและตรวจทานโดยทีมงานของผู้สมัครเอง โดยผมได้เลือกใช้เนื้อหาเป็น Markdown
+เนื่องจากมีรูปแบบคำสั่งที่เข้าใจง่าย และยังเลือกใช้ MDX ซึ่งเป็น Markdown ที่สามารถใช้งานคำสั่ง JSX ได้อีกด้วย
+
+Next.js สามารถเข้าถึง Filesystem และอ่านไฟล์บนเซิร์ฟเวอร์ในโฟลเดอร์ของ Project ได้โดยใช้การ Render Page แบบ Static Site Generation (SSG)
+ดังนั้นผมจึงใช้วิธีนี้ในการแสดงรายการนโยบายทั้งหมด
+
+<GithubEmbed
+  file="https://github.com/lemasc/election-pakapas/blob/main/utils/server/fs.ts"
+  startLine={43}
+  endLine={67}
+/>
+
+ขณะที่พัฒนาและเผยแพร่เว็บไซต์นี้ (ช่วงเดือนกรกฎาคม 2565) Git Repository

@@ -3,8 +3,8 @@ type SupportedLangCode = "en"
 type LangCode = DefaultLangCode | SupportedLangCode
 type RouteUri = | "/projects/[slug]" | "/" | "/projects/[slug]" | "/" 
 type RouteParams = {"/projects/[slug]": { "slug": string; }; "/": undefined; "/projects/[slug]": { "slug": string; }; "/": undefined; }
-type TranslationPath = "nav.home" | "nav.projects" | "tags.student-council" | "tags.website" | "tags.year 2565" | "index.title"
-type TranslationOptions = { "nav.home": {} | undefined; "nav.projects": {} | undefined; "tags.student-council": {} | undefined; "tags.website": {} | undefined; "tags.year 2565": {} | undefined; "index.title": {} | undefined; }
+type TranslationPath = "nav.home" | "nav.projects" | "tags.student-council" | "tags.website" | "tags.year" | "index.title"
+type TranslationOptions = { "nav.home": {} | undefined; "nav.projects": {} | undefined; "tags.student-council": {} | undefined; "tags.website": {} | undefined; "tags.year": { year: string; }; "index.title": {} | undefined; }
 
 declare module "astro-i18n" {
 	export * from "astro-i18n/"

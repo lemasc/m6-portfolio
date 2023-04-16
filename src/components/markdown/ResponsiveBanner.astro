@@ -1,0 +1,27 @@
+---
+const { isPWA } = Astro.props;
+---
+
+<div
+  class="rounded bg-green-200 px-4 py-6 text-green-700 flex flex-col text-center lg:text-left lg:flex-row gap-4 items-center"
+>
+  <div
+    class="rounded-full bg-white h-14 w-14 flex items-center justify-center flex-shrink-0"
+  >
+    <i class="fa fa-mobile fa-xl"></i>
+  </div>
+  <div class="space-y-1">
+    <b class="font-normal text-normal"
+      >เว็บไซต์นี้ได้พัฒนาตามหลักการออกแบบ Responsive Design</b
+    >
+    <p class="text-sm">
+      มีการทดสอบการแสดงผลในอุปกรณ์เคลื่อนที่ตลอดระยะเวลาการพัฒนา
+      {
+        isPWA &&
+          `นอกจากนี้เว็บไซต์ยังได้รับการตั้งค่าให้สามารถติดตั้งได้ (Installable) ตามหลัก
+  Progressive Web App (PWA) อีกด้วย`
+      }
+    </p>
+    <slot />
+  </div>
+</div>

@@ -13,7 +13,7 @@ export default defineAstroI18nConfig({
       tags: {
         "student-council": "คณะกรรมการนักเรียน",
         website: "เว็บไซต์",
-        "year 2565": "ปี 2565",
+        year: "ปี {year}",
       },
     },
     en: {
@@ -24,7 +24,7 @@ export default defineAstroI18nConfig({
       tags: {
         "student-council": "Student Council",
         website: "Website",
-        "year 2565": "Year 2565",
+        year: "Year {year}",
       },
     },
   },

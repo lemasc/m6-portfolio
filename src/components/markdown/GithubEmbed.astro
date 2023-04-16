@@ -1,0 +1,22 @@
+---
+interface Props {
+  file: string;
+  startLine?: number;
+  endLine?: number;
+}
+
+const { file, startLine, endLine } = Astro.props;
+
+const params = new URLSearchParams(
+  "style=github&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"
+);
+
+params.set(
+  "target",
+  `${file}${startLine ? `#L${startLine}${endLine ? `-L${endLine}` : ""}` : ""}`
+);
+
+const scriptSrc = `https://emgithub.com/embed-v2.js?${params.toString()}`;
+---
+
+<script is:inline src={scriptSrc}></script>

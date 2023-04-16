@@ -14,7 +14,7 @@ export const RatingStar = ({
         <i
           key={`star_${i}`}
           className={`fa fa-star ${
-            i < rating ? "text-yellow-400" : "text-gray-500"
+            i < rating ? "text-yellow-400" : "text-gray-400"
           }`}
         ></i>
       ))}
