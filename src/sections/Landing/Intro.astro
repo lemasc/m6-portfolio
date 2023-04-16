@@ -12,15 +12,15 @@ import { defaultClassName } from "./statics";
   )}
 >
   <div
-    class="max-w-5xl w-full flex flex-row p-8 h-full items-center justify-start"
+    class="max-w-5xl w-full flex flex-col md:flex-row p-8 h-full items-center justify-start"
   >
     <div
-      class="flex flex-col flex-grow items-start justify-center gap-6 text-xl"
+      class="flex flex-col flex-grow items-start justify-center gap-4 md:gap-6 text-xl"
     >
       <h1>Hello!</h1>
       <p class="text-xl">To Be Filled.</p>
     </div>
-    <div class="relative">
+    <div class="relative max-w-xs md:max-w-[unset]">
       <div class="bg-amber-300 bg-opacity-50 pt-6">
         <Image
           src="/images/landing.png"
