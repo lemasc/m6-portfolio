@@ -3,8 +3,8 @@ type SupportedLangCode = "en"
 type LangCode = DefaultLangCode | SupportedLangCode
 type RouteUri = | "/projects/[slug]" | "/" | "/projects/[slug]" | "/projects" | "/" 
 type RouteParams = {"/projects/[slug]": { "slug": string; }; "/": undefined; "/projects/[slug]": { "slug": string; }; "/projects": undefined; "/": undefined; }
-type TranslationPath = "nav.home" | "nav.projects" | "tags.student-council" | "tags.website" | "tags.year" | "index.title"
-type TranslationOptions = { "nav.home": {} | undefined; "nav.projects": {} | undefined; "tags.student-council": {} | undefined; "tags.website": {} | undefined; "tags.year": { year: string; }; "index.title": {} | undefined; }
+type TranslationPath = "nav.home" | "nav.projects" | "tags.student-council" | "tags.website" | "tags.year" | "index.projects.title" | "index.projects.description" | "index.title"
+type TranslationOptions = { "nav.home": {} | undefined; "nav.projects": {} | undefined; "tags.student-council": {} | undefined; "tags.website": {} | undefined; "tags.year": { year: string; }; "index.projects.title": {} | undefined; "index.projects.description": {} | undefined; "index.title": {} | undefined; }
 
 declare module "astro-i18n" {
 	export * from "astro-i18n/"

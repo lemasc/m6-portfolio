@@ -8,6 +8,7 @@ import vercel from "@astrojs/vercel/serverless";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import rehypeExternalLinks from "rehype-external-links";
+import prefetch from "@astrojs/prefetch";
 
 /**
  * @type {import("rehype-external-links").Options}
@@ -34,6 +35,7 @@ export default defineConfig({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
     react(),
+    prefetch(),
   ],
   output: "server",
   adapter: vercel(),
