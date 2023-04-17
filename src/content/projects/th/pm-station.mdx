@@ -58,7 +58,7 @@ import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
 
 เมื่อผู้ใช้งานเข้าสู่เว็บไซต์ จะปรากฏหน้าสำหรับป้อนเบอร์โทรศัพท์ และรับรหัส OTP ดังรูป
 
-เมื่อเข้าสู่ระบบสำเร็จแล้ว ในครั้งแรกจะให้ผู้ใช้งานลงทะเบียนข้อมูลก่อน โดยประกอบด้วยชื่อ (`displayName`) และประเภทของผู้ใช้ (`type`) ส่วนตำแหน่งของผู้ใช้ (`role`) จะถูกตั้งค่าเริ่มต้นเป็นผู้ใช้งาน ดังรูป
+เมื่อเข้าสู่ระบบสำเร็จแล้ว ในครั้งแรกจะให้ผู้ใช้งานลงทะเบียนข้อมูลก่อน โดยประกอบด้วยชื่อ (`displayName`) และประเภทของผู้ใช้ (`type`) ส่วนตำแหน่งของผู้ใช้ (`role`) จะถูกตั้งค่าเริ่มต้นเป็นผู้ใช้งาน (User) ดังรูป
 
 ประเภทและตำแหน่งของผู้ใช้ในระบบมีรายการดังต่อไปนี้
 
@@ -68,10 +68,78 @@ import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
   endLine={10}
 />
 
-ข้อมูลที่ได้จาการลงทะเบียนจะถูกจัดเก็บลงใน Token ของ Firebase Authentication ด้วย [Custom Claims](https://firebase.google.com/docs/auth/admin/custom-claims)
-ซึ่งต่างจากผลงานชิ้นอื่น ๆ เนื่องจาก Remix นั้นเป็น React Framework ที่เน้นการ Render Page แบบ Server Side Rendering
-จึงต้องลดการเชื่อมต่อไปยังฐานข้อมูลภายนอกอย่าง Firebase Firestore เป็นต้น
+ข้อมูลที่ได้จากการลงทะเบียนจะถูกจัดเก็บลงใน Token ของ Firebase Authentication ด้วย [Custom Claims](https://firebase.google.com/docs/auth/admin/custom-claims)
+ซึ่งต่างจากผลงานชิ้นอื่น ๆ ที่มักจัดเก็บลงในฐานข้อมูลภายนอกอย่าง Firebase Firestore เนื่องจาก Remix นั้นเป็น React Framework ที่เน้นการ Render Page แบบ Server Side Rendering จึงต้องลดการเชื่อมต่อไปยังฐานข้อมูลโดยไม่จำเป็น
 
 #### 2. การส่งคำขอเพลง
 
-การส่งคำขอเพลงในระบบ
+เมื่อผู้ใช้งานได้เข้าสู่ระบบแล้ว สามารถส่งคำขอเพลงสำหรับเปิดในรายการเข้าสู่ระบบได้ โดยในขณะทีพัฒนาเว็บไซต์นี้มีทางเลือกในการออกแบบฟีเจอร์นี้ 2 วิธี
+
+1. **รับคำขอเพลงจากลิงก์ของผู้ให้บริการสตรีมมิง (เช่น YouTube)** วิธีการนี้ผู้ใช้งานจะต้องค้นหาเพลงในผู้ให้บริการภายนอก แล้วคัดลอกลิงก์มายังเว็บไซต์ แล้วเว็บไซต์จึงเรียกดูข้อมูลผ่านทาง API (เช่น Youtube Data API)
+2. **ค้นหาเพลงในระบบผ่านทาง API ของผู้ให้บริการสตรีมมิง (เช่น Spotify)** วิธีการนี้เราสามารถกำหนดรูปแบบการแสดงผลในส่วนของการค้นหาได้ตามต้องการ ไม่จำเป็นต้องให้ผู้ใช้งานเปลี่ยนเว็บไซต์ไปยังผู้ให้บริการภายนอก
+
+ผมได้เลือกวิธีการที่ 2 โดยเลือกเป็นผู้ให้บริการจาก Spotify ซึ่งนอกจากเหตุผลในการค้นหารายการเพลงแล้ว เหตุผลอีกข้อหนึ่งก็คือ การรับคำขอจากลิงก์ของผู้ให้บริการอย่าง YouTube ที่มีคลิปวิดีโอและเพลงจำนวนมากเป็นการเปิดอิสระแก่ผู้ใช้งานก็จริง แต่ก็ทำให้การคัดกรองเพลงนั้นยากขึ้นเช่นเดียวกัน
+
+ส่วนติดต่อให้ผู้ใช้งานสามารถค้นหาเพลงและส่งคำขอเพลงได้จากภายในเว็บไซต์มีลักษณะดังนี้
+
+ในการส่ง Request ไปยัง Spotify API นั้นมีการ Authorization ด้วย Access Token จึงมีการเขียนคำสั่งในส่วนนี้ไว้ด้วย โดยมี Diagram ดังต่อไปนี้
+
+![Spotify Authorization Flow - Client Credentials](https://developer.spotify.com/images/documentation/web-api/auth-client-credentials.png)
+
+เพื่อลดจำนวนครั้งในการ Issue Token ใหม่ในแต่ละครั้ง ผมจึงออกแบบให้สามารถจัดเก็บ Token ไว้ใน Redis เพื่อเป็นการ Caching และกำหนดให้ใช้ Token นี้หากยังไม่หมดอายุ
+โดย Token นี้จะถูกจัดเก็บไว้ใน Upstash Redis ซึ่งเป็น Redis แบบ Serverless และมีโควตาการใช้งานฟรี ทำให้ไม่เสียค่าใช้จ่ายอีกเช่นกัน
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/client-web/app/utils/pm-station/spotify/auth.ts"
+  startLine={36}
+  endLine={65}
+/>
+
+หลักการทำงานของหน้าค้นหานี้คือการเรียกใช้ Spotify API เพื่อค้นหาเพลงโดยใช้ Endpoint `/search`
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/client-web/app/utils/pm-station/spotify/search.ts"
+  startLine={41}
+  endLine={55}
+/>
+
+เมื่อผู้ใช้งานกดส่งคำขอเพลง ระบบจะบันทึกคำขอนี้ไว้ในฐานข้อมูล Firebase Firestore โดยบันทึกข้อมูล 2 ประเภทดังต่อไปนี้
+เมื่อ `trackId` หมายถึงรหัส ID ของรายการเพลงจาก Spotify API และ `userId` หมายถึงรหัส ID ของผู้ใช้งานจาก Firebase Authentication
+
+- **ข้อมูลเพลง (Record)** อยู่ที่ตำแหน่ง `songrequests/{trackId}` บันทึกข้อมูลเพลงที่ได้รับจาก Spotify API และเพิ่มเติมข้อมูลต่าง ๆ ที่จำเป็น
+  เช่น จำนวนผู้ส่งคำขอ (`submissionCount`) วันที่เล่นล่าสุด (`lastPlayedAt`) เป็นต้น
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/packages/pm-station-shared/schema/src/songrequests/schema.ts"
+  startLine={12}
+  endLine={35}
+/>
+
+- **ข้อมูลการส่งคำขอ (Submission)** อยู่ที่ตำแหน่ง `songrequests/{trackId}/submission/{userId}` บันทึกรายการคำขอเพลงจากผู้ใช้ ประกอบด้วยข้อมูลที่จำเป็น
+  เช่น ส่งคำขอโดยใคร (`submittedBy`) เป็นต้น
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/packages/pm-station-shared/schema/src/songrequests/schema.ts"
+  startLine={37}
+  endLine={41}
+/>
+
+สำหรับข้อมูลที่เกี่ยวกับการนับจำนวน และวันที่ ผมได้ใช้ Firebase Functions ในการกำหนดค่าเมื่อ Collection มีการเปลี่ยนแปลงโดยอัตโนมัติ เพื่อให้ได้ข้อมูลที่เป็นปัจจุบันมากที่สุด
+และป้องกันข้อมูลบางรายการที่ส่งจากผู้ใช้งานซ้ำซ้อนกัน (Duplication)
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/pm-station-firebase/functions/src/handler.ts"
+  startLine={24}
+  endLine={48}
+/>
+
+โค้ดด้านบนนี้เป็นตัวอย่างใน Firebase Functions ที่จะดำเนินการดังต่อไปนี้เมื่อข้อมูลการส่งคำขอ (Submission) เปลี่ยนแปลงไป
+
+- กำหนดเวลาที่แก้ไขล่าสุด (`lastUpdatedAt`) และจำนวนผู้ส่งคำขอทั้งหมดของเพลงที่ผู้ใช้งานส่งเข้าในระบบ
+- กำหนดจำนวนคำขอสุทธิ (`submissionCount`) ลงใน Document `summary` ซึ่งบันทึกรายการสรุปของรายการคำขอและเพลงทั้งหมด
+
+#### 3. การจัดการคำขอเพลง
+
+ผู้ที่มีตำแหน่งผู้ใช้ตั้งแต่ Editor ขึ้นไป สามารถดูรายการคำขอเพลงจากผู้ใช้งานที่ส่งเข้ามาได้ เดิมทีข้อมูลในส่วนนี้ใช้การแสดงผลจากฐานข้อมูล Firebase Firestore เพียงอย่างเดียว ซึ่งสามารถจัดเรียง (Sort) และคัดกรองข้อมูล (Filter) ได้อย่างง่าย ๆ เท่านั้น แต่ต่อมาเมื่อรายการคำขอเพลงมีจำนวนมากขึ้น จึงมีการประยุกต์ใช้บริการ Search Engine จาก Algolia เพื่อให้สามารถค้นหาข้อมูลแบบ Full Text Search ได้ด้วย
+
+การใช้งาน Algolia ร่วมกับ Firebase Firestore นั้น สามารถทำได้โดยการติดตั้งส่วนเสริม [Search with Algolia](https://extensions.dev/extensions/algolia/firestore-algolia-search) ซึ่งมีค่าใช้จ่ายในส่วนนี้เล็กน้อย
