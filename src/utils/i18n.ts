@@ -1,4 +1,4 @@
-import { getEntryBySlug } from "astro:content";
+import { getCollection, getEntryBySlug } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { collections } from "@/content/config";
 import { astroI18n } from "astro-i18n";
@@ -15,19 +15,11 @@ type ValidEntrySlug<C extends EntryMapKeys> = AllValuesOf<
   CollectionEntry<C>
 >["slug"];
 
-type GetI18nMarkdownOptions = {
-  url: URL;
-};
-
 export async function getI18nMarkdown<
   C extends EntryMapKeys,
   E extends ValidEntrySlug<C>,
   I extends I18nEntry<ValidEntrySlug<C>>
->(
-  collection: C,
-  entrySlug: I,
-  { url }: GetI18nMarkdownOptions
-): Promise<CollectionEntry<C>> {
+>(collection: C, entrySlug: I): Promise<CollectionEntry<C>> {
   const language = astroI18n.langCode;
   const entry = (await getEntryBySlug<C, E>(
     collection,
@@ -39,4 +31,20 @@ export async function getI18nMarkdown<
     );
   }
   return entry;
+}
+
+export async function getI18nMarkdownEntries<
+  C extends EntryMapKeys,
+  E extends CollectionEntry<C>
+>(collection: C): Promise<E[]> {
+  const language = astroI18n.langCode;
+  const entries = await getCollection<C, E>(
+    collection,
+    // @ts-expect-error Every entry contains a slug to validate
+    (entry: { slug: string }) => {
+      const lang = entry.slug.split("/")[0];
+      return lang === language;
+    }
+  );
+  return entries;
 }

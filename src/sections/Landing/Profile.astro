@@ -4,9 +4,7 @@ import { classNames } from "@/utils";
 import { defaultClassName } from "./statics";
 import { getI18nMarkdown } from "@/utils/i18n";
 
-const entry = await getI18nMarkdown("landing", "profile", {
-  url: Astro.url,
-});
+const entry = await getI18nMarkdown("landing", "profile");
 const { Content } = await entry.render();
 ---
 

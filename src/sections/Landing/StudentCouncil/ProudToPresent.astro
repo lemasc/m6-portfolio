@@ -5,9 +5,7 @@ import { defaultClassName } from "../statics";
 import { getI18nMarkdown } from "@/utils/i18n";
 import { l } from "astro-i18n";
 
-const { data } = await getI18nMarkdown("projects", "pm-station", {
-  url: Astro.url,
-});
+const { data } = await getI18nMarkdown("projects", "pm-station");
 ---
 
 <section

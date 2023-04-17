@@ -7,6 +7,8 @@ import { getI18nMarkdown } from "@/utils/i18n";
 import dayjs from "@/utils/dayjs";
 import Badge from "@/components/Badge";
 import { RatingStar } from "@/components/RatingStar";
+import { Image } from "@astrojs/image/components";
+import { getImage } from "@astrojs/image";
 
 astroI18n.init(Astro);
 
@@ -15,16 +17,26 @@ if (!slug) {
   return Astro.redirect("/404");
 }
 
-const entry = await getI18nMarkdown("projects", slug as any, {
-  url: Astro.url,
-});
+const entry = await getI18nMarkdown("projects", slug as any);
 
 const { data } = entry;
-console.log(data);
-const { Content, headings } = await entry.render();
+const { Content } = await entry.render();
+
+const image = data.image
+  ? await getImage({
+      src: data.image,
+      width: 1280,
+      height: 720,
+      alt: data.title,
+      format: "webp",
+    })
+  : undefined;
 ---
 
-<BaseLayout title={data.title}>
+<BaseLayout
+  title={data.title}
+  preloadImages={image ? [{ href: image.src as string }] : undefined}
+>
   <main class="flex flex-col flex-1 h-full min-h-screen">
     <div
       class="bg-yellow-50 w-full pt-24 pb-12 px-10 h-full min-h-[50vh] flex flex-col items-center justify-center"
@@ -33,7 +45,7 @@ const { Content, headings } = await entry.render();
         class="flex flex-col items-start justify-center gap-4 w-full max-w-3xl 2xl:max-w-5xl"
       >
         <a
-          href={l("/", undefined)}
+          href={l("/projects", undefined)}
           class={classNames(
             "btn font-light text-sm focus:outline",
             "text-yellow-600 border-yellow-500",
@@ -103,6 +115,7 @@ const { Content, headings } = await entry.render();
         id="project-contents"
         class="w-full max-w-3xl 2xl:max-w-5xl space-y-4 md:space-y-6"
       >
+        {image && <img {...image} />}
         <Content />
       </article>
     </div>

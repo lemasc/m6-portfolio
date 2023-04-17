@@ -1,8 +1,8 @@
 type DefaultLangCode = "th"
 type SupportedLangCode = "en"
 type LangCode = DefaultLangCode | SupportedLangCode
-type RouteUri = | "/projects/[slug]" | "/" | "/projects/[slug]" | "/" 
-type RouteParams = {"/projects/[slug]": { "slug": string; }; "/": undefined; "/projects/[slug]": { "slug": string; }; "/": undefined; }
+type RouteUri = | "/projects/[slug]" | "/" | "/projects/[slug]" | "/projects" | "/" 
+type RouteParams = {"/projects/[slug]": { "slug": string; }; "/": undefined; "/projects/[slug]": { "slug": string; }; "/projects": undefined; "/": undefined; }
 type TranslationPath = "nav.home" | "nav.projects" | "tags.student-council" | "tags.website" | "tags.year" | "index.title"
 type TranslationOptions = { "nav.home": {} | undefined; "nav.projects": {} | undefined; "tags.student-council": {} | undefined; "tags.website": {} | undefined; "tags.year": { year: string; }; "index.title": {} | undefined; }
 

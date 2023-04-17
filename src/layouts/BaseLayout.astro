@@ -14,19 +14,21 @@ import "../styles/globals.css";
 import { astroI18n, l, t } from "astro-i18n";
 import { HrefLangs } from "astro-i18n/components";
 import type { NavigationItem } from "@/components/Navbar/types";
+import type { PreloadImageLink } from "@/components/image/types";
 
 interface Props {
   title: string;
   transparent?: boolean;
+  preloadImages?: PreloadImageLink[];
 }
 
 const language = astroI18n.langCode;
-const { title, transparent } = Astro.props;
+const { title, preloadImages = [] } = Astro.props;
 const pathname = l(Astro.url.pathname);
 
 const navigation: NavigationItem[] = [
   { name: t("nav.home"), href: l("/", undefined) },
-  { name: t("nav.projects"), href: l("/projects") },
+  { name: t("nav.projects"), href: l("/projects", undefined) },
 ];
 ---
 
@@ -36,6 +38,11 @@ const navigation: NavigationItem[] = [
     <meta name="viewport" content="width=device-width" />
     <title>{title} - Portfolio</title>
     <HrefLangs />
+    {
+      preloadImages.map((image) => (
+        <link rel="preload" href={image.href} as="image" />
+      ))
+    }
   </head>
   <body class="font-light flex flex-col h-full min-h-screen">
     <Navbar navigation={navigation} currentRoute={pathname} client:load>

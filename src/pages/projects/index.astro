@@ -1,0 +1,79 @@
+---
+import { astroI18n, t, l } from "astro-i18n";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getI18nMarkdownEntries } from "@/utils/i18n";
+import dayjs from "@/utils/dayjs";
+import Badge from "@/components/Badge";
+import { RatingStar } from "@/components/RatingStar";
+import { Image } from "@astrojs/image/components";
+
+astroI18n.init(Astro);
+
+const entries = (await getI18nMarkdownEntries("projects"))
+  .map(({ data, slug }) => {
+    return { ...data, slug: slug.slice(3) };
+  })
+  .sort((a, b) => {
+    return dayjs(a.releaseDate).unix() - dayjs(b.releaseDate).unix();
+  });
+---
+
+<BaseLayout title={t("nav.projects")}>
+  <main class="flex flex-col flex-1 h-full min-h-screen">
+    <div
+      class="bg-yellow-50 w-full pt-24 pb-12 px-10 h-full min-h-[50vh] flex flex-col items-center justify-center"
+    >
+      <header
+        class="flex flex-col items-start justify-center gap-4 w-full max-w-3xl 2xl:max-w-5xl"
+      >
+        <h1 class="text-yellow-600 pb-4">{t("nav.projects")}</h1>
+      </header>
+    </div>
+    <div class="flex justify-center p-10">
+      <div
+        class="w-full max-w-3xl 2xl:max-w-5xl grid grid-cols-2 gap-4 md:gap-6"
+      >
+        {
+          entries.map((entry) => (
+            <a
+              href={l("/projects/[slug]", {
+                slug: entry.slug,
+              })}
+              class="bg-white w-full transition-all hover:bg-gray-50 hover:shadow-md rounded-lg h-full flex flex-col"
+            >
+              {entry.image ? (
+                <Image
+                  src={entry.image}
+                  class="w-full h-40 object-cover object-top rounded-t-lg border-l border-r border-t"
+                  width={480}
+                  height={270}
+                  alt={entry.title}
+                />
+              ) : (
+                <div class="w-full h-40 bg-gray-100 rounded-t-lg border-l border-r bnorder-t" />
+              )}
+              <div class="p-4 flex-grow border-l border-r border-b rounded-b-lg space-y-1">
+                <b class="text-lg">{entry.title}</b>
+
+                <div class="flex flex-row gap-4 py-2">
+                  {entry.tags.map((tag) => (
+                    <Badge tag={tag} />
+                  ))}
+                </div>
+                <RatingStar
+                  title="ประเมินความง่าย-ยากของงาน จากประสบการณ์การทำงานในปัจจุบัน"
+                  rating={entry.rating}
+                  sm
+                />
+                <p class="text-sm leading-6 text-gray-700">
+                  {entry.description}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>
