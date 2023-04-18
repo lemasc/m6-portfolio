@@ -1,1 +1,1 @@
-export const defaultClassName = "min-h-screen h-full snap-start";
+export const defaultClassName = "min-h-screen snap-start";

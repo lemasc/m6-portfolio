@@ -2,25 +2,39 @@
 import { classNames } from "@/utils";
 import { Image } from "@astrojs/image/components";
 import { defaultClassName } from "./statics";
+import Typewriter from "@/components/markdown/Typewriter/index.astro";
 ---
 
 <section
   id="intro"
   class={classNames(
-    `flex items-start justify-center bg-yellow-50 p-6`,
+    `flex flex-col justify-center bg-yellow-50 p-6`,
     defaultClassName
   )}
 >
   <div
-    class="max-w-5xl w-full flex flex-col md:flex-row p-8 h-full items-center justify-start"
+    class="max-w-5xl flex-1 w-full flex flex-col md:flex-row p-8 h-full items-center justify-start"
   >
     <div
       id="head"
-      style={{ opacity: 0 }}
       class="flex flex-col flex-grow items-start justify-center gap-4 md:gap-6 text-xl"
     >
-      <h1>Hello!</h1>
-      <p class="text-xl">To Be Filled.</p>
+      <p>ผมเป็น</p>
+      <Typewriter
+        strings={[
+          "นักเรียน",
+          "โปรแกรมเมอร์",
+          "ฝ่ายเทคนิค",
+          "นักตัดต่อวิดีโอ",
+          "วิศวกรเสียง",
+          "ทุกอย่างที่เกี่ยวกับเทคโนโลยี",
+        ]}
+      >
+        <h1></h1>
+      </Typewriter>
+      <p class="text-xl">
+        ยินดีต้อนรับเข้าสู่เว็บไซต์ครับ ผมชื่อนายศักดิธัช ธนาสดใส
+      </p>
     </div>
     <div class="relative max-w-xs md:max-w-[unset]">
       <div class="bg-amber-300 bg-opacity-50 pt-6">
@@ -35,7 +49,3 @@ import { defaultClassName } from "./statics";
     </div>
   </div>
 </section>
-<script>
-  import { animate } from "./animate";
-  animate(document.querySelector("#intro #head"));
-</script>

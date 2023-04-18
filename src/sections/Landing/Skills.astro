@@ -100,16 +100,40 @@ const images: SkillImageProps[] = [
 <section
   id="tech-stack"
   class={classNames(
-    "flex flex-col items-center justify-center bg-gray-100 p-8",
+    "flex flex-col items-center justify-center bg-gray-100 p-8 min-h-screen",
     defaultClassName
   )}
 >
-  <div
-    class="flex flex-col items-center justify-center md:p-8 gap-10 max-w-[40rem]"
-  >
-    <h2 class="text-gray-600">Skills</h2>
-    <div class="flex flex-row flex-wrap items-center justify-center gap-8">
-      {images.map((props) => <SkillImage {...props} />)}
+  <article class="flex flex-col items-center justify-center md:p-8 md:gap-8">
+    <h2 class="py-4">ทักษะต่าง ๆ</h2>
+    <div
+      class="flex flex-col md:flex-row gap-6 py-2 md:py-4 items-center text-center md:text-left"
+    >
+      <div class="flex flex-col gap-4 md:gap-6 max-w-2xl">
+        <p>
+          ปัจจุบันผมถนัดเขียนโปรแกรมด้วย JavaScript
+          ไม่ว่าจะเป็นการเขียนเว็บไซต์เป็นหลักด้วย React อย่าง Next.js, Remix
+          การเขียนโปรแกรมฝั่ง Server side ด้วย Node.js
+          หรือการเขียนแอปพลิเคชันบนมือถืออย่าง React Native เป็นต้น
+        </p>
+        <p>
+          ในอดีตผมเคยมีประสบการณ์ในการเขียนโปรแกรมด้วยภาษา VB.NET, Python, Java
+          และการสร้างเว็บไซต์ด้วย MySQL และ PHP
+          ด้วยประสบการณ์เหล่านี้เองทำให้ผมสามารถต่อยอดความรู้กับภาษาโปรแกรมมิงอื่น
+          ๆ ได้อีกด้วย
+        </p>
+        <p>
+          นอกจากด้านการเขียนโปรแกรมแล้ว ผมยังมีประสบการณ์ในการปรับแต่งภาพด้วย
+          Adobe Lightroom การตัดต่อคลิปวิดีโอด้วย Adobe Premiere Pro, Adobe
+          After Effects และ VEGAS Pro และสามารถออกแบบงานศิลป์ด้วย Canva ได้
+        </p>
+      </div>
+
+      <div
+        class="hidden sm:flex flex-row flex-wrap items-center justify-center py-4 gap-3 lg:gap-8max-w-[40rem]"
+      >
+        {images.map((props) => <SkillImage {...props} />)}
+      </div>
     </div>
-  </div>
+  </article>
 </section>
