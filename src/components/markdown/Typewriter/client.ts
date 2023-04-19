@@ -22,3 +22,7 @@ export class TypewriterElement extends HTMLElement {
     //typewriter.start();
   }
 }
+
+export function register() {
+  customElements.define("typewriter-element", TypewriterElement);
+}

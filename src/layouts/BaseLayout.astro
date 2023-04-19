@@ -1,5 +1,4 @@
 ---
-import { classNames } from "@/utils";
 import { Navbar } from "@/components/Navbar";
 import "@fontsource/mitr/300.css";
 import "@fontsource/mitr/400.css";
@@ -28,7 +27,7 @@ interface Props {
 }
 
 const language = astroI18n.langCode;
-const { title, preloadImages = [] } = Astro.props;
+const { title, preloadImages = [], transparent } = Astro.props;
 const pathname = l(Astro.url.pathname);
 
 const navigation: NavigationItem[] = [
@@ -50,11 +49,22 @@ const navigation: NavigationItem[] = [
     }
   </head>
   <body class="font-light flex flex-col h-full min-h-screen">
-    <Navbar navigation={navigation} currentRoute={pathname} client:load>
+    <Navbar
+      transparent={transparent}
+      navigation={navigation}
+      serverRoute={pathname}
+      client:load
+    >
       <span>Nav</span>
     </Navbar>
-    <div class={"h-full flex-1 flex-grow"}>
+    <div id="swup" class={"h-full flex-1 flex-grow"}>
       <slot />
     </div>
+    <script>
+      import { swup } from "@/utils/swup.client";
+      import { register } from "@/components/markdown/Typewriter/client";
+      window.swup = swup();
+      register();
+    </script>
   </body>
 </html>

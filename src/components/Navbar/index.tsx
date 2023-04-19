@@ -5,14 +5,36 @@ import type { MatchedNavigationItem, NavigationItem } from "./types";
 
 export function Navbar({
   navigation,
-  className,
-  currentRoute,
+  transparent,
+  serverRoute,
 }: {
   navigation: NavigationItem[];
-  className?: string;
-  currentRoute: string;
+  transparent?: boolean;
+  serverRoute: string;
 }) {
   const [top, setTop] = useState(true);
+
+  const [currentRoute, setRoute] = useState<string>(serverRoute);
+  /*useEffect(() => {
+    const target =
+      currentRoute === "/" ? document.querySelector("main") : window;
+    console.log(target);
+    if (!target) {
+      console.error("No target found for scroll event listener");
+      return;
+    }
+    const scrollHandler = () => {
+      const offset =
+        (target as HTMLElement).scrollTop ?? (target as Window).scrollY;
+      console.log(offset);
+      offset > 50 ? setTop(false) : setTop(true);
+    };
+    scrollHandler();
+    target.addEventListener("scroll", scrollHandler);
+    return () => target.removeEventListener("scroll", scrollHandler);
+  }, [currentRoute]);
+  */
+
   useEffect(() => {
     const scrollHandler = () => {
       window.pageYOffset > 100 ? setTop(false) : setTop(true);
@@ -20,6 +42,14 @@ export function Navbar({
     scrollHandler();
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.swup) {
+      window.swup.on("contentReplaced", () => {
+        setRoute(window.swup.currentPageUrl);
+      });
+    }
   }, []);
 
   const items: MatchedNavigationItem[] = useMemo(
@@ -37,8 +67,10 @@ export function Navbar({
         <div
           className={classNames(
             "absolute top-0 w-full",
-            top && !open ? "bg-transparent" : "bg-yellow-50 bg-opacity-90",
-            "transition-colors ease-in duration-300"
+            (top && !open) || transparent
+              ? "bg-transparent"
+              : "bg-yellow-50 bg-opacity-70 backdrop-blur-sm shadow-sm",
+            "transition-all ease-in duration-300"
           )}
         >
           <div className="w-full px-4 sm:px-10 lg:px-14">
