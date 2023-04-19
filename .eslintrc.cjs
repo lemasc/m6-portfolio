@@ -1,9 +1,4 @@
 module.exports = {
-  extends: [
-    "plugin:astro/recommended",
-    "plugin:astro/jsx-a11y-recommended",
-    "plugin:prettier/recommended",
-  ],
   overrides: [
     {
       // Define the configuration for `.astro` file.
@@ -16,6 +11,11 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
       },
+      extends: [
+        "plugin:astro/recommended",
+        "plugin:astro/jsx-a11y-recommended",
+        "plugin:prettier/recommended",
+      ],
       rules: {
         // override/add rules settings here, such as:
         // "astro/no-set-html-directive": "error"
@@ -27,7 +27,7 @@ module.exports = {
       parser: "@typescript-eslint/parser",
     },
     {
-      files: ["*.mdx"],
+      files: ["*.md", "*.mdx"],
       extends: ["plugin:mdx/recommended"],
     },
   ],

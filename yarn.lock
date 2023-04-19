@@ -735,6 +735,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/playfair-display@npm:^4.5.13":
+  version: 4.5.13
+  resolution: "@fontsource/playfair-display@npm:4.5.13"
+  checksum: 80da63aab1ad1ec3f44f63ab6ea522d318d7bfac16f6a47ceba66fc7dee72468f41abbd8e16b678d60e369f563ef430bf134a097dcd1c47116b6e267b20ecc17
+  languageName: node
+  linkType: hard
+
 "@fortawesome/fontawesome-free@npm:^6.4.0":
   version: 6.4.0
   resolution: "@fortawesome/fontawesome-free@npm:6.4.0"
@@ -6463,6 +6470,7 @@ __metadata:
     "@astrojs/tailwind": ^3.1.1
     "@astrojs/vercel": ^3.2.3
     "@fontsource/mitr": ^4.5.10
+    "@fontsource/playfair-display": ^4.5.13
     "@fortawesome/fontawesome-free": ^6.4.0
     "@headlessui/react": ^1.7.14
     "@types/animejs": ^3.1.7
