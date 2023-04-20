@@ -14,10 +14,13 @@ const { host, protocol } = Astro.url;
 const site = `${protocol}//${host}`;
 ---
 
-<section id="profile" class={classNames("flex flex-1 justify-center relative")}>
+<section
+  id="profile"
+  class={classNames("flex flex-1 justify-center relative w-full")}
+>
   <div class="flex flex-col max-w-7xl w-full bg-white border-l border-r">
     <div
-      class="absolute inset-0 -z-10 bg-gradient-to-b from-yellow-200/30 to-transparent w-full h-1/2"
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-yellow-100/30 to-transparent w-full h-1/2"
     >
     </div>
     <div

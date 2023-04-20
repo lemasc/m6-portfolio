@@ -1,47 +1,11 @@
 ---
-import Intro from "./Intro.astro";
 import Profile from "./Profile.astro";
-import Skills from "./Skills.astro";
 import StudentCouncil from "./StudentCouncil/index.astro";
-
-const navEntries = [
-  ["intro", "หน้าหลัก"],
-  ["profile", "ข้อมูลส่วนตัว"],
-  ["student-council-intro", "ผลงานที่สำคัญ"],
-];
 ---
 
-{
-  /**
-   * Twitter Style Layout
-   * Contains navigation bar at the left (hide on small viewports), and the main content at the right.
-   */
-}
 <main class="md:text-lg flex flex-col flex-1 items-center justify-center">
-  {
-    /*<aside
-    class="hidden lg:flex 2xl:basis-1/3 max-w-[30vw] flex-col flex-shrink-0 items-end sticky h-screen top-0 border-r"
-  >
-    <div class="lg:flex flex-col text-base px-6 xl:px-10 py-10 xl:py-20 gap-4">
-      {
-        navEntries.map(([key, title]) => (
-          <a
-            href={`#${key}`}
-            class={`transition-colors duration-300 pl-6 pr-20 py-3 rounded-2xl hover:bg-gray-100 ${
-              key === "profile" ? "bg-gray-200 font-medium" : "text-gray-700"
-            }`}
-          >
-            {title}
-          </a>
-        ))
-      }
-    </div>
-  </aside>*/
-  }
-
-  <div class="w-full">
-    <Profile />
-    <Skills />
+  <Profile />
+  <div class="flex flex-col max-w-7xl w-full bg-white border-l border-r">
     <StudentCouncil />
   </div>
 </main>

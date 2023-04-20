@@ -2,30 +2,40 @@
 import "./styles/Intro.css";
 
 import { Image } from "@astrojs/image/components";
-import { classNames } from "@/utils";
-import { defaultClassName } from "../statics";
 import { getI18nMarkdown } from "@/utils/i18n";
+import Tweet from "../Tweet.astro";
 
 const entry = await getI18nMarkdown("landing", "student-council-intro");
 const { Content } = await entry.render();
+
+const tweet = await getI18nMarkdown("landing", "student-council-tweet");
+const { Content: TweetContent } = await tweet.render();
 ---
 
-<section
-  id="student-council-intro"
-  class={classNames("relative overflow-hidden", defaultClassName)}
->
-  <div class="inline-block overflow-hidden absolute w-full h-full z-[1] p-8">
-    <article
-      class="flex flex-col text-center items-center justify-center w-full md:p-8 h-full text-white"
-    >
-      <Content />
-    </article>
-  </div>
-  <Image
-    src="/images/student-council/landing.jpg"
-    class={"w-full h-full object-cover min-h-screen object-center pointer-events-none opacity-75 blur-sm"}
-    alt="Background of WPM School. Contains a logo and a motto in large label."
-    width={1280}
-    height={720}
-  />
+<section id="student-council-intro">
+  <Tweet>
+    <div class="space-y-1">
+      <TweetContent />
+    </div>
+    <div class="relative h-full py-2">
+      <div
+        class="inline-block overflow-hidden absolute inset-0 w-full h-full z-[1]"
+      >
+        <article
+          class="flex flex-col text-center items-center justify-center w-full md:p-8 h-full text-white space-y-4"
+        >
+          <Content />
+        </article>
+      </div>
+      <div class="rounded-lg overflow-hidden">
+        <Image
+          src="/images/student-council/landing.jpg"
+          class={"w-full h-full max-h-[400px] object-cover object-[50%_70%] pointer-events-none opacity-75 blur-sm rounded-lg"}
+          alt="Background of WPM School. Contains a logo and a motto in large label."
+          width={1280}
+          height={720}
+        />
+      </div>
+    </div>
+  </Tweet>
 </section>

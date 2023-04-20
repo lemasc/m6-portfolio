@@ -1,50 +1,45 @@
 ---
 import { Image } from "@astrojs/image/components";
-import { classNames } from "@/utils";
-import { defaultClassName } from "../statics";
 import { getI18nMarkdown } from "@/utils/i18n";
 import { l } from "astro-i18n";
+import Tweet from "../Tweet.astro";
 
 const { data } = await getI18nMarkdown("projects", "pm-station");
 ---
 
-<section
-  id="proud-to-present"
-  class={classNames(
-    "flex flex-col items-center justify-center px-8 py-14 overflow-auto snap-start"
-    //defaultClassName
-  )}
->
-  <div class="max-w-5xl w-full flex flex-col gap-8 items-center justify-center">
-    <h2>ผลงานที่ภูมิใจนำเสนอ</h2>
-    <div
-      class="flex flex-col lg:flex-row bg-gray-50 rounded-lg shadow-lg max-w-xs lg:max-w-xl w-full"
-    >
-      <div
-        class="flex lg:flex-grow lg:basis-3/5 flex-col md:items-start md:justify-center"
-      >
-        <article class="flex flex-col gap-4 p-8">
-          <h3>{data.title}</h3>
-          <p class="text-sm leading-6">{data.description}</p>
-          <a
-            href={l("/projects/pm-station")}
-            class="btn text-sm bg-gray-800 text-white hover:bg-black arrow-right"
-          >
-            ดูรายละเอียดเพิ่มเติม</a
-          >
-        </article>
-      </div>
-      <div class="overflow-hidden lg:basis-2/5">
-        <Image
-          src={data.image as string}
-          class="rounded-r w-full h-full object-cover object-left aspect-square"
-          alt={data.title}
-          width={533}
-          height={400}
-          position={"left"}
-          fit="cover"
-        />
+<section id="proud-to-present">
+  <Tweet>
+    <div class="space-y-2 w-full">
+      <b>ผลงานที่ภูมิใจนำเสนอ</b>
+      <div class="grid grid-cols-2 py-1 items-start">
+        <div
+          class="flex flex-col lg:flex-row bg-gray-50 rounded-lg shadow-lg w-full"
+        >
+          <div class="overflow-hidden">
+            <Image
+              src={data.image as string}
+              class="rounded-l-lg w-full h-full object-cover object-left"
+              alt={data.title}
+              width={533}
+              height={400}
+              position={"left"}
+              fit="cover"
+            />
+          </div>
+          <div class="flex flex-col">
+            <article class="flex flex-col gap-4 px-5 lg:px-6 py-6">
+              <h3>{data.title}</h3>
+              <p class="text-sm leading-6">{data.description}</p>
+              <a
+                href={l("/projects/pm-station")}
+                class="btn text-sm text-center bg-black text-white hover:bg-gray-700 arrow-right"
+              >
+                ดูรายละเอียดเพิ่มเติม</a
+              >
+            </article>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </Tweet>
 </section>

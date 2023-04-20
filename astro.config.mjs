@@ -9,6 +9,7 @@ import image from "@astrojs/image";
 import react from "@astrojs/react";
 import rehypeExternalLinks from "rehype-external-links";
 import prefetch from "@astrojs/prefetch";
+import remarkTwemoji from "remark-twemoji";
 
 /**
  * @type {import("rehype-external-links").Options}
@@ -22,6 +23,7 @@ const externalLinkOptions = {
 export default defineConfig({
   markdown: {
     rehypePlugins: [[rehypeExternalLinks, externalLinkOptions]],
+    remarkPlugins: [remarkTwemoji],
   },
   integrations: [
     i18n(),

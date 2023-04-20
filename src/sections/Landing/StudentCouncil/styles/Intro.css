@@ -1,9 +1,9 @@
-#student-council-intro p {
-  @apply py-4;
-}
-
 #student-council-intro a {
-  @apply btn text-lg border border-white;
+  @apply btn text-lg border border-white my-6;
   @apply hover:bg-white hover:bg-opacity-90 hover:text-black;
   @apply focus:bg-white focus:bg-opacity-90 focus:text-black;
+}
+
+#student-council-intro article p:last-child {
+  @apply py-4;
 }

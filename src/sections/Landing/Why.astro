@@ -1,0 +1,13 @@
+---
+import { getI18nMarkdown } from "@/utils/i18n";
+import Tweet from "./Tweet.astro";
+
+const entry = await getI18nMarkdown("landing", "why-com");
+const { Content } = await entry.render();
+---
+
+<Tweet>
+  <div class="space-y-3">
+    <Content />
+  </div>
+</Tweet>
