@@ -5,36 +5,18 @@ import type { MatchedNavigationItem, NavigationItem } from "./types";
 
 export function Navbar({
   navigation,
-  transparent,
   serverRoute,
 }: {
   navigation: NavigationItem[];
-  transparent?: boolean;
   serverRoute: string;
 }) {
   const [top, setTop] = useState(true);
 
   const [currentRoute, setRoute] = useState<string>(serverRoute);
-  /*useEffect(() => {
-    const target =
-      currentRoute === "/" ? document.querySelector("main") : window;
-    console.log(target);
-    if (!target) {
-      console.error("No target found for scroll event listener");
-      return;
-    }
-    const scrollHandler = () => {
-      const offset =
-        (target as HTMLElement).scrollTop ?? (target as Window).scrollY;
-      console.log(offset);
-      offset > 50 ? setTop(false) : setTop(true);
-    };
-    scrollHandler();
-    target.addEventListener("scroll", scrollHandler);
-    return () => target.removeEventListener("scroll", scrollHandler);
-  }, [currentRoute]);
-  */
-
+  const transparent = useMemo(
+    () => currentRoute.includes("home"),
+    [currentRoute]
+  );
   useEffect(() => {
     const scrollHandler = () => {
       window.pageYOffset > 100 ? setTop(false) : setTop(true);
@@ -45,7 +27,7 @@ export function Navbar({
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.swup) {
+    if (typeof window !== "undefined" && typeof window.swup !== "undefined") {
       window.swup.on("contentReplaced", () => {
         setRoute(window.swup.currentPageUrl);
       });
@@ -60,24 +42,27 @@ export function Navbar({
       })),
     [currentRoute]
   );
-
   return (
     <Disclosure as="nav" className="sticky z-20 w-full top-0">
       {({ open }) => (
         <div
           className={classNames(
             "absolute top-0 w-full",
-            (top && !open) || transparent
+            top && !open
               ? "bg-transparent"
               : "bg-yellow-50 bg-opacity-70 backdrop-blur-sm shadow-sm",
             "transition-all ease-in duration-300"
           )}
         >
-          <div className="w-full px-4 sm:px-10 lg:px-14">
+          <div className="w-full px-4 lg:px-10 xl:px-14">
             <div className="relative flex h-16 items-center justify-between my-2">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 focus:outline-none">
+                <Disclosure.Button
+                  className={`inline-flex z-20 items-center justify-center rounded-md px-2 py-5 text-gray-600 ${
+                    transparent && !open && top ? "bg-yellow-100/90" : ""
+                  } focus:outline-none`}
+                >
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <i
@@ -92,8 +77,8 @@ export function Navbar({
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="px-4 flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-                <div className="hidden sm:ml-6 sm:block">
+              <div className="px-4 flex flex-1 items-center justify-center lg:items-stretch lg:justify-end">
+                <div className="hidden lg:ml-6 lg:block">
                   <div className="flex space-x-10">
                     {items.map((item) => (
                       <a
@@ -103,7 +88,7 @@ export function Navbar({
                           item.matched
                             ? "font-normal"
                             : "opacity-60 hover:opacity-100",
-                          "text-black text-sm xl:text-base transition-all duration-300 ease-in"
+                          "text-black drop-shadow-lg text-sm xl:text-base transition-all duration-300 ease-in"
                         )}
                         aria-current={item.matched ? "page" : undefined}
                       >
@@ -123,7 +108,7 @@ export function Navbar({
             leave={"transition-all duration-500"}
             leaveFrom={"opacity-100 scale-100"}
             leaveTo={"opacity-0 scale-75"}
-            className="h-full min-h-screen w-full sm:hidden z-50"
+            className="h-full min-h-screen w-full lg:hidden z-50"
           >
             <Disclosure.Panel static>
               <div className="space-y-2 px-6">

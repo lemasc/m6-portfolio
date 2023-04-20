@@ -2,15 +2,11 @@
 import { astroI18n, t, l } from "astro-i18n";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Landing from "@/sections/Landing/index.astro";
+import Intro from "@/sections/Landing/Intro.astro";
 
 astroI18n.init(Astro);
 ---
 
-<BaseLayout transparent title={t("index.title")}>
-  <main
-    class="scroll-my-6 scroll-smooth snap-y snap-proximity w-screen h-screen overflow-y-scroll md:text-lg"
-  >
-    <Landing />
-  </main>
+<BaseLayout title={t("index.title")}>
+  <Intro />
 </BaseLayout>

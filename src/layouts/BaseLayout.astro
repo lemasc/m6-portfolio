@@ -22,16 +22,15 @@ type PreloadImageLink = {
 
 interface Props {
   title: string;
-  transparent?: boolean;
   preloadImages?: PreloadImageLink[];
 }
 
 const language = astroI18n.langCode;
-const { title, preloadImages = [], transparent } = Astro.props;
+const { title, preloadImages = [] } = Astro.props;
 const pathname = l(Astro.url.pathname);
 
 const navigation: NavigationItem[] = [
-  { name: t("nav.home"), href: l("/", undefined) },
+  { name: t("nav.home"), href: l("/home", undefined) },
   { name: t("nav.projects"), href: l("/projects", undefined) },
 ];
 ---
@@ -49,14 +48,7 @@ const navigation: NavigationItem[] = [
     }
   </head>
   <body class="font-light flex flex-col h-full min-h-screen">
-    <Navbar
-      transparent={transparent}
-      navigation={navigation}
-      serverRoute={pathname}
-      client:load
-    >
-      <span>Nav</span>
-    </Navbar>
+    <Navbar navigation={navigation} serverRoute={pathname} client:load />
     <div id="swup" class={"h-full flex-1 flex-grow"}>
       <slot />
     </div>

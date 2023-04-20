@@ -14,108 +14,67 @@ const { host, protocol } = Astro.url;
 const site = `${protocol}//${host}`;
 ---
 
-<section id="profile" class={classNames("flex flex-1", defaultClassName)}>
-  <div class="flex flex-col items-center flex-1">
-    <div class="flex flex-row w-full xl:max-w-6xl">
-      <aside
-        class="hidden lg:flex flex-col flex-shrink-0 text-base px-6 xl:px-10 py-10 xl:py-20 gap-4"
+<section id="profile" class={classNames("flex flex-1 justify-center relative")}>
+  <div class="flex flex-col max-w-7xl w-full bg-white border-l border-r">
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-yellow-200/30 to-transparent w-full h-1/2"
+    >
+    </div>
+    <div
+      class="bg-yellow-500 w-full relative h-[35vh] min-h-[250px] lg:h-[50vh]"
+    >
+      <div
+        class="absolute inset-0 z-10 bg-gradient-to-b from-yellow-100/40 to-transparent w-full h-[30vh]"
       >
-        {
-          [
-            ["intro", "หน้าหลัก"],
-            ["profile", "ข้อมูลส่วนตัว"],
-            ["student-council-intro", "ผลงานที่สำคัญ"],
-          ].map(([key, title]) => (
-            <a
-              href={`#${key}`}
-              class={`transition-colors duration-300 pl-6 pr-20 py-3 rounded-2xl hover:bg-gray-100 ${
-                key === "profile" ? "bg-gray-200 font-medium" : "text-gray-700"
-              }`}
-            >
-              {title}
-            </a>
-          ))
-        }
-      </aside>
-      <div class="overflow-y-visible flex-1 border-l border-r">
-        <div class="flex flex-col">
-          <div class="bg-yellow-500 w-full relative h-56">
-            <div
-              class="max-w-[150px] md:max-w-none md:flex-shrink-0 absolute p-4 -bottom-1/3 md:left-2"
-            >
-              <Image
-                src="/images/my-profile.jpg"
-                class="w-full h-full rounded-full border-4 border-white"
-                alt="Sakditach Thanasodsai (Picture Profile)"
-                width={150}
-                draggable={false}
-                height={150}
-                position={"center"}
-                fit="cover"
-              />
-            </div>
-            <Image
-              src="/images/profile-bg-cover.jpg"
-              class="object-cover w-full h-full"
-              width={1280}
-              height={853}
-              alt="ภาพบรรยากาศพิธีแสดงมุทิตาจิต อาจารย์ผู้เกษียณอายุราชการ ประจำปี พ.ศ. 2565 โดยผมได้มีส่วนร่วมในการ LIVE พิธีการนี้ ผ่านทาง Facebook Page ชุมนุมสื่อสารมวลชน"
-            />
-          </div>
-          <div class="flex justify-end px-4 pt-4">
-            <a
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://github.com/lemasc"
-              class="rounded-3xl px-4 py-2 text-xs md:text-sm font-normal border border-gray-300 transition-colors hover:bg-gray-100"
-            >
-              <i class="fa-brands fa-github fa-lg pr-1"></i>
-              เยี่ยมชม Github Profile</a
-            >
-          </div>
-          <div class="px-6 pb-6 pt-4 md:pt-6 space-y-1 border-b">
-            <b class="text-2xl">นายศักดิธัช ธนาสดใส (ซาน)</b>
-            <p class="text-gray-500">@sakditachthanasodsai</p>
-            <div class="py-1">
-              <Bio />
-            </div>
-            <div class="text-gray-500 flex gap-2 items-center">
-              <i class="fa-solid fa-link -mt-1"></i>
-              <a class="text-yellow-500 hover:underline" href={site}>{host}</a>
-            </div>
-            <div class="text-gray-500 flex gap-2 items-center">
-              <i class="fa-solid fa-cake-candles -mt-1 pr-1"></i>
-              <p>เกิดเมื่อ 20 มกราคม พ.ศ. 2549 (17 ปี)</p>
-            </div>
-          </div>
-
-          <div
-            class="flex flex-row items-start p-4 gap-4 border-b transition-colors duration-150 hover:bg-gray-100 cursor-pointer"
-          >
-            <div class="flex-shrink-0">
-              <Image
-                src="/images/my-profile.jpg"
-                class="w-full h-full rounded-full"
-                alt="Sakditach Thanasodsai (Picture Profile)"
-                width={60}
-                draggable={false}
-                height={60}
-                position={"center"}
-                fit="cover"
-              />
-            </div>
-            <article class="flex flex-col flex-grow space-y-0.5">
-              <div
-                class="flex flex-row gap-2 py-1 items-center flex-wrap"
-                title="@sakditachthanasodsai"
-              >
-                <b>นายศักดิธัช ธนาสดใส (ซาน)</b>
-                <span class="text-sm text-gray-500">@sakditachthanasodsai</span>
-              </div>
-              <Content />
-            </article>
-          </div>
-        </div>
+      </div>
+      <div
+        class="max-w-[150px] md:max-w-none md:flex-shrink-0 absolute p-4 bottom-[-70px] md:left-2"
+      >
+        <Image
+          src="/images/my-profile.jpg"
+          class="w-full h-full rounded-full border-4 border-white md:max-w-[150px] lg:max-w-none"
+          alt="Sakditach Thanasodsai (Picture Profile)"
+          width={200}
+          draggable={false}
+          height={200}
+          position={"center"}
+          fit="cover"
+        />
+      </div>
+      <Image
+        src="/images/profile-bg-cover.jpg"
+        class="object-cover w-full h-full"
+        width={1280}
+        height={720}
+        aspectRatio={"16:9"}
+        fit="cover"
+        alt="ภาพบรรยากาศพิธีแสดงมุทิตาจิต อาจารย์ผู้เกษียณอายุราชการ ประจำปี พ.ศ. 2565 โดยผมได้มีส่วนร่วมในการ LIVE พิธีการนี้ ผ่านทาง Facebook Page ชุมนุมสื่อสารมวลชน"
+      />
+    </div>
+    <div class="flex justify-end px-4 pt-4">
+      <a
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://github.com/lemasc"
+        class="rounded-3xl px-4 py-2 text-xs lg:text-sm font-normal border border-gray-300 transition-colors hover:bg-gray-100"
+      >
+        <i class="fa-brands fa-github fa-lg pr-1"></i>
+        เยี่ยมชม Github Profile</a
+      >
+    </div>
+    <div class="px-6 pb-6 pt-4 space-y-1 border-b">
+      <b class="text-2xl">นายศักดิธัช ธนาสดใส (ซาน)</b>
+      <p class="text-gray-500">@sakditachthanasodsai</p>
+      <div class="py-1">
+        <Bio />
+      </div>
+      <div class="text-gray-500 flex gap-2 items-center">
+        <i class="fa-solid fa-link -mt-1"></i>
+        <a class="text-yellow-500 hover:underline" href={site}>{host}</a>
+      </div>
+      <div class="text-gray-500 flex gap-2 items-center">
+        <i class="fa-solid fa-cake-candles -mt-1 pr-1"></i>
+        <p>เกิดเมื่อ 20 มกราคม พ.ศ. 2549 (17 ปี)</p>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
 {
 	"nav.home": "nav.home",
 	"nav.projects": "nav.projects",
+	"index.title": "index.title",
 	"/404": "/404",
 	"LL": "LL",
-	"index.title": "index.title"
+	"index.projects.title": "index.projects.title",
+	"index.projects.description": "index.projects.description"
 }
