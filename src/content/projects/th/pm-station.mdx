@@ -82,6 +82,8 @@ import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
 
 ส่วนติดต่อให้ผู้ใช้งานสามารถค้นหาเพลงและส่งคำขอเพลงได้จากภายในเว็บไซต์มีลักษณะดังนี้
 
+ผู้ใช้งานสามารถค้นหาเพลงที่ต้องการได้ จากนั้นเลือกเพลงที่ต้องการ สามารถทดลองฟังโดยการกด Preview ได้ และกดปุ่ม "ส่งคำขอเพลง" เพื่อส่งคำขอเพลงไปยังระบบได้
+
 ในการส่ง Request ไปยัง Spotify API นั้นมีการ Authorization ด้วย Access Token จึงมีการเขียนคำสั่งในส่วนนี้ไว้ด้วย โดยมี Diagram ดังต่อไปนี้
 
 ![Spotify Authorization Flow - Client Credentials](https://developer.spotify.com/images/documentation/web-api/auth-client-credentials.png)
@@ -95,7 +97,7 @@ import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
   endLine={65}
 />
 
-หลักการทำงานของหน้าค้นหานี้คือการเรียกใช้ Spotify API เพื่อค้นหาเพลงโดยใช้ Endpoint `/search`
+หลักการทำงานของหน้าค้นหานี้คือการเรียกใช้ Spotify API เพื่อค้นหาเพลงโดยใช้ Endpoint `/search` ที่สามารถค้นหาได้จากชื่อเพลง หรือชื่อศิลปินก็ได้
 
 <GithubEmbed
   file="https://github.com/coolkidssatit/pm-station/blob/main/apps/client-web/app/utils/pm-station/spotify/search.ts"
@@ -142,4 +144,14 @@ import ResponsiveBanner from "@/components/markdown/ResponsiveBanner.astro";
 
 ผู้ที่มีตำแหน่งผู้ใช้ตั้งแต่ Editor ขึ้นไป สามารถดูรายการคำขอเพลงจากผู้ใช้งานที่ส่งเข้ามาได้ เดิมทีข้อมูลในส่วนนี้ใช้การแสดงผลจากฐานข้อมูล Firebase Firestore เพียงอย่างเดียว ซึ่งสามารถจัดเรียง (Sort) และคัดกรองข้อมูล (Filter) ได้อย่างง่าย ๆ เท่านั้น แต่ต่อมาเมื่อรายการคำขอเพลงมีจำนวนมากขึ้น จึงมีการประยุกต์ใช้บริการ Search Engine จาก Algolia เพื่อให้สามารถค้นหาข้อมูลแบบ Full Text Search ได้ด้วย
 
-การใช้งาน Algolia ร่วมกับ Firebase Firestore นั้น สามารถทำได้โดยการติดตั้งส่วนเสริม [Search with Algolia](https://extensions.dev/extensions/algolia/firestore-algolia-search) ซึ่งมีค่าใช้จ่ายในส่วนนี้เล็กน้อย
+การใช้งาน Algolia ร่วมกับ Firebase Firestore นั้น สามารถทำได้โดยการติดตั้งส่วนเสริม [Search with Algolia](https://extensions.dev/extensions/algolia/firestore-algolia-search) ซึ่งมีค่าใช้จ่ายในส่วนนี้เพียงเล็กน้อยเท่านั้น
+
+ปัจจุบันส่วนการจัดการคำขอเพลงมีความสามารถดังต่อไปนี้
+
+- จัดเรียงคำขอเพลงตามสถานะ "ยังไม่ได้เล่น" "เล่นแล้ว" หรือ "ถูกปฏิเสธ" ได้
+- ปฏิเสธหรือยกเลิกการปฏิเสธเพลงที่เนื้อหาไม่เหมาะสมได้
+- จัดเรียงคำขอเพลงตาม "ชื่อ" หรือ "วัน-เวลาส่ง" ได้
+- สามารถค้นหาคำขอเพลงที่ต้องการได้ด้วยชื่อเพลง หรือชื่อศิลปินได้
+- สามารถคัดกรองคำขอเพลงได้ตามจำนวนคำขอเพลง หรือศิลปินได้
+
+ส่วนติดต่อในหน้านี้มีการประยุกต์ใช้ [React InstantSearch](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react-hooks/) ซึ่งเป็นชุด Components สำหรับออกแบบส่วนติดต่อการค้นหาและกรองข้อมูลจาก Algolia ทำให้สามารถประหยัดเวลาในการเขียนโค้ดไปได้มาก
