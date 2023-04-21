@@ -2,13 +2,11 @@
 
 import { defineConfig } from "astro/config";
 import i18n from "astro-i18n";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import vercel from "@astrojs/vercel/serverless";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import rehypeExternalLinks from "rehype-external-links";
-import prefetch from "@astrojs/prefetch";
 import remarkTwemoji from "remark-twemoji";
 
 /**
@@ -27,17 +25,11 @@ export default defineConfig({
   },
   integrations: [
     i18n(),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
     mdx(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
     react(),
-    //prefetch(),
   ],
   output: "server",
   adapter: vercel(),

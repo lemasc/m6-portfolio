@@ -15,9 +15,7 @@
 	"dependencies": {
 		"@astrojs/image": "^0.16.5",
 		"@astrojs/mdx": "^0.18.3",
-		"@astrojs/prefetch": "^0.2.1",
 		"@astrojs/react": "^2.1.1",
-		"@astrojs/tailwind": "^3.1.1",
 		"@astrojs/vercel": "^3.2.3",
 		"@fontsource/mitr": "^4.5.10",
 		"@fontsource/playfair-display": "^4.5.13",
@@ -43,6 +41,7 @@
 		"remark-twemoji": "^0.1.1",
 		"sharp": "^0.32.0",
 		"swup": "^3.0.6",
+		"swup-meta-tags-plugin": "^1.0.2",
 		"tailwindcss": "^3.0.24",
 		"twemoji": "^14.0.2",
 		"typewriter-effect": "^2.19.0"
@@ -52,10 +51,12 @@
 		"@types/quicklink": "^2.3.0",
 		"@typescript-eslint/eslint-plugin": "^5.58.0",
 		"@typescript-eslint/parser": "^5.58.0",
+		"autoprefixer": "^10.4.14",
 		"eslint": "^8.38.0",
 		"eslint-plugin-astro": "^0.26.1",
 		"eslint-plugin-jsx-a11y": "^6.7.1",
 		"eslint-plugin-mdx": "^2.0.5",
+		"postcss-import": "^15.1.0",
 		"prettier": "^2.8.7",
 		"prettier-plugin-astro": "^0.8.0"
 	},

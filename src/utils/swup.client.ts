@@ -3,6 +3,7 @@ import SwupSlideTheme from "@swup/slide-theme";
 import SwupPreloadPlugin from "@swup/preload-plugin";
 import SwupProgressPlugin from "@swup/progress-plugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
+import SwupMetaTagsPlugin from "swup-meta-tags-plugin";
 
 export function swup() {
   return new Swup({
@@ -11,6 +12,7 @@ export function swup() {
       new SwupSlideTheme(),
       new SwupScrollPlugin(),
       new SwupPreloadPlugin(),
+      new SwupMetaTagsPlugin(),
     ],
   });
 }

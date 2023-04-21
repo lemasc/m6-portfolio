@@ -126,15 +126,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/prefetch@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@astrojs/prefetch@npm:0.2.1"
-  dependencies:
-    throttles: ^1.0.1
-  checksum: 3b6786e170137107e3ba87d3341a86d39836427348a2237ae928c4f79a0b768fedb8b0845ef5c0ec563eca1de608eeb9ee8d39e44237c1ba290d3252dc5d2160
-  languageName: node
-  linkType: hard
-
 "@astrojs/prism@npm:^2.1.0, @astrojs/prism@npm:^2.1.1":
   version: 2.1.1
   resolution: "@astrojs/prism@npm:2.1.1"
@@ -156,21 +147,6 @@ __metadata:
     react: ^17.0.2 || ^18.0.0
     react-dom: ^17.0.2 || ^18.0.0
   checksum: df1fe4978d706b136473d1d33015533e644fc2698651128272ac91e305164de73eba5411657224af681a761fff04b8130ce588f1bf8d43053d0df5ee5e7e8c3f
-  languageName: node
-  linkType: hard
-
-"@astrojs/tailwind@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "@astrojs/tailwind@npm:3.1.1"
-  dependencies:
-    "@proload/core": ^0.3.2
-    autoprefixer: ^10.4.7
-    postcss: ^8.4.14
-    postcss-load-config: ^4.0.1
-  peerDependencies:
-    astro: ^2.1.3
-    tailwindcss: ^3.0.24
-  checksum: 2c1db53b6b2c600df77cb1d4e75badff38aa7b06e520e78a35315031dd4a49c41686f80d9926669314feb55eee64fc5a5e1ff87c2a72c98fdc0ae14ced3599f3
   languageName: node
   linkType: hard
 
@@ -2083,16 +2059,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@proload/core@npm:^0.3.2":
-  version: 0.3.3
-  resolution: "@proload/core@npm:0.3.3"
-  dependencies:
-    deepmerge: ^4.2.2
-    escalade: ^3.1.1
-  checksum: bf1483f21928eabbf632b3d34bb53b0d86d0c44d22c2bf798151351c0179db4fdefa6801176bff6a6318e01caa3bc486d600d3b1afd963a57cf227168639bc7f
-  languageName: node
-  linkType: hard
-
 "@rollup/plugin-alias@npm:^3.1.1":
   version: 3.1.9
   resolution: "@rollup/plugin-alias@npm:3.1.9"
@@ -2220,6 +2186,13 @@ __metadata:
   version: 1.0.1
   resolution: "@swup/browserslist-config@npm:1.0.1"
   checksum: 704a079099a89e1eac00e274f4bc454dcd80b9ded8d9af2f03928a21d625972b0c3ebd42dd89f37a8a149595a94914eee053a667bac315391a71765d726acbfe
+  languageName: node
+  linkType: hard
+
+"@swup/plugin@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@swup/plugin@npm:1.0.1"
+  checksum: b78d86156c848eae8e1994843f457949981b907e613193c5acfc1c94810e76eb97404232b172139a973c1d1d836655a1284b99055ef25fc7d671d27067f69359
   languageName: node
   linkType: hard
 
@@ -3130,7 +3103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.1.0, autoprefixer@npm:^10.4.7":
+"autoprefixer@npm:^10.1.0, autoprefixer@npm:^10.4.14":
   version: 10.4.14
   resolution: "autoprefixer@npm:10.4.14"
   dependencies:
@@ -8621,9 +8594,7 @@ __metadata:
   dependencies:
     "@astrojs/image": ^0.16.5
     "@astrojs/mdx": ^0.18.3
-    "@astrojs/prefetch": ^0.2.1
     "@astrojs/react": ^2.1.1
-    "@astrojs/tailwind": ^3.1.1
     "@astrojs/vercel": ^3.2.3
     "@fontsource/mitr": ^4.5.10
     "@fontsource/playfair-display": ^4.5.13
@@ -8642,6 +8613,7 @@ __metadata:
     animejs: ^3.2.1
     astro: ^2.2.0
     astro-i18n: ^1.6.9
+    autoprefixer: ^10.4.14
     dayjs: ^1.11.7
     eslint: ^8.38.0
     eslint-config-prettier: ^8.8.0
@@ -8649,6 +8621,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.7.1
     eslint-plugin-mdx: ^2.0.5
     eslint-plugin-prettier: ^4.2.1
+    postcss-import: ^15.1.0
     prettier: ^2.8.7
     prettier-plugin-astro: ^0.8.0
     quicklink: ^2.3.0
@@ -8659,6 +8632,7 @@ __metadata:
     remark-twemoji: ^0.1.1
     sharp: ^0.32.0
     swup: ^3.0.6
+    swup-meta-tags-plugin: ^1.0.2
     tailwindcss: ^3.0.24
     twemoji: ^14.0.2
     typewriter-effect: ^2.19.0
@@ -8752,6 +8726,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-import@npm:^15.1.0":
+  version: 15.1.0
+  resolution: "postcss-import@npm:15.1.0"
+  dependencies:
+    postcss-value-parser: ^4.0.0
+    read-cache: ^1.0.0
+    resolve: ^1.1.7
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 7bd04bd8f0235429009d0022cbf00faebc885de1d017f6d12ccb1b021265882efc9302006ba700af6cab24c46bfa2f3bc590be3f9aee89d064944f171b04e2a3
+  languageName: node
+  linkType: hard
+
 "postcss-js@npm:^4.0.0":
   version: 4.0.1
   resolution: "postcss-js@npm:4.0.1"
@@ -8778,24 +8765,6 @@ __metadata:
     ts-node:
       optional: true
   checksum: 1c589504c2d90b1568aecae8238ab993c17dba2c44f848a8f13619ba556d26a1c09644d5e6361b5784e721e94af37b604992f9f3dc0483e687a0cc1cc5029a34
-  languageName: node
-  linkType: hard
-
-"postcss-load-config@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "postcss-load-config@npm:4.0.1"
-  dependencies:
-    lilconfig: ^2.0.5
-    yaml: ^2.1.1
-  peerDependencies:
-    postcss: ">=8.0.9"
-    ts-node: ">=9.0.0"
-  peerDependenciesMeta:
-    postcss:
-      optional: true
-    ts-node:
-      optional: true
-  checksum: b61f890499ed7dcda1e36c20a9582b17d745bad5e2b2c7bc96942465e406bc43ae03f270c08e60d1e29dab1ee50cb26970b5eb20c9aae30e066e20bd607ae4e4
   languageName: node
   linkType: hard
 
@@ -10646,6 +10615,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swup-meta-tags-plugin@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "swup-meta-tags-plugin@npm:1.0.2"
+  dependencies:
+    "@swup/plugin": ^1.0.1
+  checksum: 2fe039245cb2858f8cf45fdb41d9ad630cb2afce881bbf0a92b405150f12feb1e9a7f4231a2c15781bbdc8bd8119e5c702ff4a30bf68b4dc5d685519f7c9d5df
+  languageName: node
+  linkType: hard
+
 "swup@npm:^3.0.0, swup@npm:^3.0.6":
   version: 3.0.6
   resolution: "swup@npm:3.0.6"
@@ -10781,7 +10759,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"throttles@npm:^1.0.0, throttles@npm:^1.0.1":
+"throttles@npm:^1.0.0":
   version: 1.0.1
   resolution: "throttles@npm:1.0.1"
   checksum: 0f3b36b8fcba720df7ab283f40f4e4d6b1b31939dba7fafac6e4e8bc1743eeaff546916a66344be7af1d7a2d014d799e7924009a15118887aef0cfc5292559a1
@@ -11658,13 +11636,6 @@ __metadata:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
-  languageName: node
-  linkType: hard
-
-"yaml@npm:^2.1.1":
-  version: 2.2.1
-  resolution: "yaml@npm:2.2.1"
-  checksum: 84f68cbe462d5da4e7ded4a8bded949ffa912bc264472e5a684c3d45b22d8f73a3019963a32164023bdf3d83cfb6f5b58ff7b2b10ef5b717c630f40bd6369a23
   languageName: node
   linkType: hard
 
