@@ -3,5 +3,5 @@
   @apply text-yellow-600;
 }
 .emoji {
-  @apply max-w-[22px] inline -mt-1;
+  @apply max-w-[22px] inline ml-1 -mt-1;
 }

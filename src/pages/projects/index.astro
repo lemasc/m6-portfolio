@@ -50,13 +50,13 @@ const entries = (await getI18nMarkdownEntries("projects"))
               {entry.image ? (
                 <Image
                   src={entry.image}
-                  class="w-full h-40 object-cover object-top rounded-t-lg border-l border-r border-t"
+                  class="w-full h-56 object-cover object-top rounded-t-lg border-l border-r border-t"
                   width={480}
                   height={270}
                   alt={entry.title}
                 />
               ) : (
-                <div class="w-full h-40 bg-gray-100 rounded-t-lg border-l border-r bnorder-t" />
+                <div class="w-full h-56 bg-gray-100 rounded-t-lg border-l border-r bnorder-t" />
               )}
               <div class="p-5 flex-grow border-l border-r border-b rounded-b-lg space-y-1">
                 <b class="text-lg">{entry.title}</b>

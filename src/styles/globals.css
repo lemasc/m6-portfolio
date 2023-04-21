@@ -30,7 +30,7 @@
   }
   ol,
   ul {
-    @apply list-outside pr-2 pl-6 lg:space-y-2 text-sm md:text-base;
+    @apply list-outside pr-2 pl-6 space-y-2 text-base;
   }
   li {
     @apply leading-7;
@@ -44,7 +44,7 @@
     @apply text-sm md:text-base break-all;
   }
   blockquote {
-    @apply bg-gray-100 p-4 pl-8 rounded text-gray-600;
+    @apply bg-gray-100 p-4 pl-8 rounded text-gray-600 space-y-2;
   }
 }
 
@@ -75,5 +75,5 @@
 }
 
 article#project-contents a:not(.emgithub-file *) {
-  @apply text-yellow-500 hover:text-yellow-600 underline;
+  @apply text-yellow-600 hover:text-yellow-700 underline;
 }

@@ -12,8 +12,10 @@ interface Props {
 const { data, slug } = Astro.props;
 ---
 
-<div class="flex flex-col lg:flex-row bg-gray-50 rounded-lg shadow-lg w-full">
-  <div class="overflow-hidden">
+<div
+  class="flex flex-col lg:flex-row lg:items-center bg-gray-50 rounded-lg shadow-lg w-full"
+>
+  <div class="overflow-hidden h-full">
     {
       data.image && (
         <Image
@@ -24,11 +26,12 @@ const { data, slug } = Astro.props;
           height={400}
           position={"left"}
           fit="cover"
+          draggable={false}
         />
       )
     }
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-col lg:basis-full">
     <article class="flex flex-col gap-4 px-5 lg:px-6 py-6">
       <h3>{data.title}</h3>
       <p class="text-sm leading-6">{data.description}</p>

@@ -1,5 +1,5 @@
 ---
-import { astroI18n, t, l } from "astro-i18n";
+import { astroI18n, l } from "astro-i18n";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { classNames } from "@/utils";
@@ -7,8 +7,6 @@ import { getI18nMarkdown } from "@/utils/i18n";
 import dayjs from "@/utils/dayjs";
 import Badge from "@/components/Badge";
 import { RatingStar } from "@/components/RatingStar";
-import { Image } from "@astrojs/image/components";
-import { getImage } from "@astrojs/image";
 
 astroI18n.init(Astro);
 
@@ -21,22 +19,9 @@ const entry = await getI18nMarkdown("projects", slug as any);
 
 const { data } = entry;
 const { Content } = await entry.render();
-
-const image = data.image
-  ? await getImage({
-      src: data.image,
-      width: 1280,
-      height: 720,
-      alt: data.title,
-      format: "webp",
-    })
-  : undefined;
 ---
 
-<BaseLayout
-  title={data.title}
-  preloadImages={image ? [{ href: image.src as string }] : undefined}
->
+<BaseLayout title={data.title}>
   <main class="flex flex-col flex-1 h-full min-h-screen">
     <div
       class="bg-yellow-50 w-full pt-24 pb-12 px-10 h-full min-h-[50vh] flex flex-col items-center justify-center"
@@ -115,7 +100,6 @@ const image = data.image
         id="project-contents"
         class="w-full max-w-3xl 2xl:max-w-5xl space-y-4 md:space-y-6"
       >
-        {image && <img {...image} />}
         <Content />
       </article>
     </div>
