@@ -23,6 +23,7 @@
 		"@headlessui/react": "^1.7.14",
 		"@swup/preload-plugin": "^2.1.0",
 		"@swup/progress-plugin": "^2.0.0",
+		"@swup/scripts-plugin": "^1.1.0",
 		"@swup/scroll-plugin": "^2.0.2",
 		"@swup/slide-theme": "^1.0.5",
 		"@types/react": "^18.0.21",

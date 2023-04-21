@@ -41,7 +41,7 @@
   }
   code:not(.astro-code *):not(.emgithub-file *) {
     @apply bg-red-50 px-1 py-0.5 md:py-1 rounded-sm text-red-800 select-all;
-    @apply text-sm md:text-base;
+    @apply text-sm md:text-base break-all;
   }
   blockquote {
     @apply bg-gray-100 p-4 pl-8 rounded text-gray-600;

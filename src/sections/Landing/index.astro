@@ -4,9 +4,11 @@ import StudentCouncil from "./StudentCouncil.astro";
 import ProudToPresent from "./ProudToPresent.astro";
 ---
 
-<main class="md:text-lg flex flex-col flex-1 items-center justify-center">
+<main class="md:text-lg flex flex-col flex-1 items-center justify-center pb-6">
   <Profile />
-  <div class="flex flex-col max-w-7xl w-full bg-white border-l border-r">
+  <div
+    class="flex flex-col max-w-7xl w-full bg-white border-l border-r divide-y"
+  >
     <StudentCouncil />
     <ProudToPresent />
   </div>

@@ -17,6 +17,8 @@ params.set(
 );
 
 const scriptSrc = `https://emgithub.com/embed-v2.js?${params.toString()}`;
+
+//TODO: Migrate this to local component. This way we don't need to use swup scripts plugin to rerun these code blocks.
 ---
 
 <script is:inline src={scriptSrc}></script>
