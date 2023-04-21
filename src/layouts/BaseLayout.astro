@@ -53,10 +53,35 @@ const navigation: NavigationItem[] = [
     <div id="swup" class={"h-full flex-1 flex-grow"}>
       <slot />
     </div>
+    <footer
+      class={`${
+        pathname === "/" ? "hidden" : "flex"
+      } mt-10 border-yellow-100 bg-yellow-100/30 text-gray-700 space-y-2 text-sm flex-col items-center justify-center h-40`}
+    >
+      <b>จัดทำเว็บไซต์โดย นายศักดิธัช ธนาสดใส</b>
+      <a
+        target="_blank"
+        rel="noreferrer noopener"
+        class="underline text-yellow-500 hover:text-yellow-600"
+        href="https://github.com/lemasc/m6-portfolio"
+      >
+        ดู Source Code บน Github
+      </a>
+    </footer>
     <script>
       import { swup } from "@/utils/swup.client";
       import { register } from "@/components/markdown/Typewriter/client";
       window.swup = swup();
+      const footer = document.querySelector("footer");
+      window.swup.on("contentReplaced", () => {
+        if (window.swup.currentPageUrl === "/") {
+          footer?.classList.add("hidden");
+          footer?.classList.remove("flex");
+        } else {
+          footer?.classList.remove("hidden");
+          footer?.classList.add("flex");
+        }
+      });
       register();
     </script>
   </body>
