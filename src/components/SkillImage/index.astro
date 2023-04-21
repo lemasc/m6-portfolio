@@ -1,11 +1,7 @@
 ---
-export interface Props {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  href: string;
-}
+import type { SkillImageProps } from "./props";
+
+export interface Props extends SkillImageProps {}
 
 const { alt, href, src, height = 60, width = 60 } = Astro.props;
 ---

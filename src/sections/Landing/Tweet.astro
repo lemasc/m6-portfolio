@@ -6,7 +6,7 @@ import { Image } from "@astrojs/image/components";
   <div class="flex-shrink-0">
     <Image
       src="/images/my-profile.jpg"
-      class="w-full h-full rounded-full"
+      class="w-full h-full rounded-full max-w-[48px] md:max-w-none"
       alt="Sakditach Thanasodsai (Picture Profile)"
       width={60}
       draggable={false}
@@ -15,14 +15,16 @@ import { Image } from "@astrojs/image/components";
       fit="cover"
     />
   </div>
-  <div class="flex flex-col flex-grow space-y-0.5">
+  <div class="flex flex-col flex-grow">
     <div
-      class="flex flex-row gap-2 py-1 items-center flex-wrap"
+      class="flex flex-row gap-y-0.5 gap-x-2 pb-1 items-center flex-wrap"
       title="@sakditachthanasodsai"
     >
-      <b class="text-yellow-600">นายศักดิธัช ธนาสดใส (ซาน)</b>
-      <span class="text-sm text-yellow-600/80">@sakditachthanasodsai</span>
+      <b>นายศักดิธัช ธนาสดใส (ซาน)</b>
+      <span class="text-sm text-gray-500">@sakditachthanasodsai</span>
     </div>
-    <slot />
+    <div class="tweet-container">
+      <slot />
+    </div>
   </div>
 </div>

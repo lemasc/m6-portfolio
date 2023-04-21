@@ -1,0 +1,45 @@
+---
+import { Image } from "@astrojs/image/components";
+import type { TypeOf } from "astro/zod";
+import type { projectSchema } from "@/content/config";
+import { l } from "astro-i18n";
+
+interface Props {
+  data: TypeOf<typeof projectSchema>;
+  slug: string;
+}
+
+const { data, slug } = Astro.props;
+---
+
+<div class="flex flex-col lg:flex-row bg-gray-50 rounded-lg shadow-lg w-full">
+  <div class="overflow-hidden">
+    {
+      data.image && (
+        <Image
+          src={data.image as string}
+          class="rounded-t-lg lg:rounded-r-none lg:rounded-l-lg w-full h-full object-cover object-left"
+          alt={data.title}
+          width={533}
+          height={400}
+          position={"left"}
+          fit="cover"
+        />
+      )
+    }
+  </div>
+  <div class="flex flex-col">
+    <article class="flex flex-col gap-4 px-5 lg:px-6 py-6">
+      <h3>{data.title}</h3>
+      <p class="text-sm leading-6">{data.description}</p>
+      <a
+        href={l("/projects/[slug]", {
+          slug,
+        })}
+        class="btn text-sm text-center bg-black text-white hover:bg-gray-700 arrow-right"
+      >
+        ดูรายละเอียดเพิ่มเติม</a
+      >
+    </article>
+  </div>
+</div>

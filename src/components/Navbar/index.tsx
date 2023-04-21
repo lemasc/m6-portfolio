@@ -56,7 +56,7 @@ export function Navbar({
         >
           <div className="w-full px-4 lg:px-10 xl:px-14">
             <div className="relative flex h-16 items-center justify-between my-2">
-              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
+              <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button
                   className={`inline-flex z-20 items-center justify-center rounded-md px-2 py-5 text-gray-600 ${
