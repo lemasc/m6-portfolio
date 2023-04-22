@@ -7,6 +7,7 @@ import { getI18nMarkdown } from "@/utils/i18n";
 import dayjs from "@/utils/dayjs";
 import Badge from "@/components/Badge";
 import { RatingStar } from "@/components/RatingStar";
+import LazyLoadImage from "@/components/markdown/LazyLoadImage.astro";
 
 astroI18n.init(Astro);
 
@@ -100,7 +101,11 @@ const { Content } = await entry.render();
         id="project-contents"
         class="w-full max-w-3xl 2xl:max-w-5xl space-y-4 md:space-y-6"
       >
-        <Content />
+        <Content
+          components={{
+            img: LazyLoadImage,
+          }}
+        />
       </article>
     </div>
   </main>
