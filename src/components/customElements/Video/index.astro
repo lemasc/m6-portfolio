@@ -1,0 +1,15 @@
+---
+interface Props {
+  src: string;
+  autoplay?: boolean;
+  title: string;
+}
+
+const { src, autoplay = true, title } = Astro.props;
+---
+
+<div>
+  <lazyload-video src={src} autoplay={JSON.stringify(autoplay)}>
+    <video title={title} class="w-full bg-gray-100 aspect-video"></video>
+  </lazyload-video>
+</div>

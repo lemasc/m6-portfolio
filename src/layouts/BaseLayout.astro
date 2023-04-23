@@ -70,7 +70,7 @@ const navigation: NavigationItem[] = [
     </footer>
     <script>
       import { swup } from "@/utils/swup.client";
-      import { register } from "@/components/markdown/Typewriter/client";
+      import { register } from "@/components/customElements";
       window.swup = swup();
       const footer = document.querySelector("footer");
       window.swup.on("contentReplaced", () => {

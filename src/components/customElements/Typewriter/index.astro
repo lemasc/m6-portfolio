@@ -1,0 +1,8 @@
+---
+import type { TypewriterProps } from "./props";
+
+interface Props extends TypewriterProps {}
+const props = Astro.props;
+---
+
+<typewriter-element props={JSON.stringify(props)}><slot /></typewriter-element>
