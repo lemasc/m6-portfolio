@@ -8,6 +8,7 @@ import image from "@astrojs/image";
 import react from "@astrojs/react";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkTwemoji from "remark-twemoji";
+import rehypeVideo from "rehype-video";
 
 /**
  * @type {import("rehype-external-links").Options}
@@ -20,7 +21,7 @@ const externalLinkOptions = {
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    rehypePlugins: [[rehypeExternalLinks, externalLinkOptions]],
+    rehypePlugins: [[rehypeExternalLinks, externalLinkOptions], rehypeVideo],
     remarkPlugins: [remarkTwemoji],
   },
   integrations: [

@@ -8639,6 +8639,7 @@ __metadata:
     react-dom: ^18.0.0
     react-type-animation: ^3.0.1
     rehype-external-links: ^2.0.1
+    rehype-video: ^1.2.2
     remark-twemoji: ^0.1.1
     sharp: ^0.32.0
     swup: ^3.0.6
@@ -9561,6 +9562,16 @@ __metadata:
     hast-util-to-html: ^8.0.0
     unified: ^10.0.0
   checksum: ff4b1f3f88f2747a9f88d84f8cd9811e892a7309574480547ddfd94022725a62e17a9ccc69f9d909620a20f2a6ad750ea74b317f06ab50955209b5c0ede5cd3f
+  languageName: node
+  linkType: hard
+
+"rehype-video@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "rehype-video@npm:1.2.2"
+  dependencies:
+    unified: ~10.1.1
+    unist-util-visit: ~4.1.0
+  checksum: 0062d2649afac3e0fd9e154f959c88fcfedbfaaa1f9b1d0c733414c6ae5f1a53271ab34afa52e1ead38b9fc55d680fa42a8e008d1417d091ee7b8007ea24aea2
   languageName: node
   linkType: hard
 
@@ -11066,7 +11077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^10.0.0, unified@npm:^10.1.2":
+"unified@npm:^10.0.0, unified@npm:^10.1.2, unified@npm:~10.1.1":
   version: 10.1.2
   resolution: "unified@npm:10.1.2"
   dependencies:
@@ -11215,7 +11226,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:^4.0.0, unist-util-visit@npm:^4.1.0, unist-util-visit@npm:^4.1.1":
+"unist-util-visit@npm:^4.0.0, unist-util-visit@npm:^4.1.0, unist-util-visit@npm:^4.1.1, unist-util-visit@npm:~4.1.0":
   version: 4.1.2
   resolution: "unist-util-visit@npm:4.1.2"
   dependencies:
