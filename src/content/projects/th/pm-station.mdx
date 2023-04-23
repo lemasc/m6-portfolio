@@ -300,10 +300,57 @@ YouTube มีแพลตฟอร์มสริมมิงเพลงขอ
 
 ### การแสดงผลเพลงที่กำลังเล่นปัจจุบัน
 
+<Video
+  autoplay={false}
+  src="/images/projects/pm-station/kiosk-player.mp4"
+  title="PM Station - Kiosk Player"
+/>
+
 ผมได้มีการออกแบบส่วนติดต่อในฝั่ง Controller ให้เป็นระบบคิวเพลง ที่สามารถเลือกเพลงจากรายการเพลงเข้าไปยังคิวเพลงเพื่อรอเล่นได้
+
+หลักการจริง ๆ ในส่วนนี้ไม่มีอะไรซับซ้อนมากนัก ทั้ง 2 อุปกรณ์ (Controller และ Projector) เชื่อมต่อเข้าสู่ Websocker Server
+
+- Controller จะสามารถเรียกคำสั่งพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์ได้ 2 คำสั่ง คือ `play` และ `stop`
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/kiosk-socket/types/socket/controller.ts"
+  startLine={3}
+  endLine={6}
+/>
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/kiosk-web/app/controller/app/components/PlayerContext.tsx"
+  startLine={97}
+  endLine={111}
+/>
+- Websocket Server เมื่อได้รับคำสั่งจาก Controller จะส่งต่อข้อมูลไปยัง Projector
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/kiosk-socket/server/controller.ts"
+  startLine={13}
+  endLine={38}
+/>
+
+- Projector เมื่อได้รับข้อมูลแล้วจะบันทึกลงใน State เพื่อแสดงผลบนจอ
+
+<GithubEmbed
+  file="https://github.com/coolkidssatit/pm-station/blob/main/apps/kiosk-web/store/projector/socket.ts"
+  startLine={18}
+  endLine={30}
+/>
 
 ## ผลตอบรับจากการทำผลงาน
 
+จากข้อมูลผู้ใช้งานที่ลงทะเบียนในระบบ 196 บัญชี สามารถสรุปเป็นข้อมูลการเข้าใช้งานเว็บไซต์ในปีการศึกษา 2565 ตั้งแต่วันที่ 6 กันยายน 2565 - 1 มีนาคม 2566 ได้ดังนี้
+
+![PM Station - Submission Graph](/images/projects/pm-rianarai/graph-submission.png)
+
 ## สิ่งที่ได้เรียนรู้จากการทำผลงาน
 
+ผลงานนี้เปลี่ยนรูปแบบการเขียนเว็บไซต์ต่างจากเดิม เปลี่ยน React Framework จาก Next.js มาเป็น Remix ซึ่งเป็น Framework ที่เน้นการ Render Page แบบ Server Side Rendering ทำให้ต้องเปลี่ยนวิธีการคิดและออกแบบจากเดิมที่อยู่ในฝั่ง Client มาอยู่ในฝั่ง Server มากขึ้น (ซึ่งเป็นเรื่องดี) นอกจากนี้ได้เปลี่ยน Deploy Platform จาก Vercel และ Netlify มาเป็น Fly.io ด้วย ซึ่งไม่ใช่แพลตฟอร์มแบบ Serverless แล้ว มีการประมวลผลด้วย Server จริง ๆ จึงต้องจัดสรรทรัพยากรการใช้งานให้เหมาะสม ไม่มากจนเกินไป และฝึกการตั้งค่า Docker เพื่อใช้กับ Fly.io อีกด้วย
+
 ## ปัญหาและอุปสรรคที่เกิดขึ้น
+
+Fly.io เป็นแพลตฟอร์ทแบบ Container-based ซึ่งเน้นการใช้ Docker เป็นหลัก Fly.io นั้นไม่มีระบบ CI สำหรับ Deploy อัตโนมัติแล้ว จึงต้องเขียน Github Actions ซึ่งเป็น CI บน Github เองอีกด้วย
+
+การใช้งาน Container อย่าง Docker ต้องใช้ความแรงของคอมพิวเตอร์ระดับหนึ่ง ในช่วงที่กำลังพัฒนา คอมพิวเตอร์ที่ใช้ยังมีประสิทธิภาพไม่แรงมาก การ Build ในแต่ละครั้งจึงใช้เวลาค่อนข้างนาน ประกอบกับการ Debug หรือแก้ไขปัญหาเมื่อเกิดข้อผิดพลาดนั้นสามารถทำได้ยาก เวลาบางส่วนในการพัฒนาจึงเสียไปกับการ Setup เหล่านี้ ซึงถ้าหาก Deploy บนแพลตฟอร์มเดิมอย่าง Vercel กระบวนการจะไวขึ้นมาก แต่ขณะนั้น Vercel ยังไม่รองรับ Remix อย่างเต็มรูปแบบ
