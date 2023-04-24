@@ -1,14 +1,10 @@
 ---
 import { Image } from "@astrojs/image/components";
 import { classNames } from "@/utils";
-import { defaultClassName } from "./statics";
 import { getI18nMarkdown } from "@/utils/i18n";
 
 const bioEntry = await getI18nMarkdown("landing", "profile");
 const { Content: Bio } = await bioEntry.render();
-
-const entry = await getI18nMarkdown("landing", "why-com");
-const { Content } = await entry.render();
 
 const { host, protocol } = Astro.url;
 const site = `${protocol}//${host}`;

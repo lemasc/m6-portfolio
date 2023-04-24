@@ -42,6 +42,7 @@
 		"rehype-video": "^1.2.2",
 		"remark-twemoji": "^0.1.1",
 		"sharp": "^0.32.0",
+		"smoothscroll-polyfill": "^0.4.4",
 		"swup": "^3.0.6",
 		"swup-meta-tags-plugin": "^1.0.2",
 		"tailwindcss": "^3.0.24",
@@ -52,6 +53,7 @@
 	"devDependencies": {
 		"@types/animejs": "^3.1.7",
 		"@types/quicklink": "^2.3.0",
+		"@types/smoothscroll-polyfill": "^0.3.1",
 		"@typescript-eslint/eslint-plugin": "^5.58.0",
 		"@typescript-eslint/parser": "^5.58.0",
 		"autoprefixer": "^10.4.14",

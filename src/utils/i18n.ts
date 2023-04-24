@@ -11,7 +11,7 @@ export type I18nEntry<E> = E extends `${infer Lang}/${infer Entry}`
 
 type EntryMapKeys = keyof typeof collections;
 type AllValuesOf<T> = T extends { slug: string } ? T : never;
-type ValidEntrySlug<C extends EntryMapKeys> = AllValuesOf<
+export type ValidEntrySlug<C extends EntryMapKeys> = AllValuesOf<
   CollectionEntry<C>
 >["slug"];
 

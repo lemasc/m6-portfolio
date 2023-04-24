@@ -32,6 +32,7 @@ const pathname = l(Astro.url.pathname);
 
 const navigation: NavigationItem[] = [
   { name: t("nav.home"), href: l("/home", undefined) },
+  { name: t("nav.about"), href: l("/about", undefined) },
   { name: t("nav.projects"), href: l("/projects", undefined) },
 ];
 ---
@@ -72,6 +73,9 @@ const navigation: NavigationItem[] = [
       import { swupStore } from "@/utils/swup";
       import { initSwup } from "@/utils/swup.client";
       import { register } from "@/components/customElements";
+      import smoothscroll from "smoothscroll-polyfill";
+      smoothscroll.polyfill();
+
       const swup = initSwup();
       const footer = document.querySelector("footer");
       swup.on("contentReplaced", () => {

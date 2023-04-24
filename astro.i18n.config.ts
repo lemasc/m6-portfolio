@@ -8,6 +8,7 @@ export default defineAstroI18nConfig({
     th: {
       nav: {
         home: "หน้าหลัก",
+        about: "เกี่ยวกับ",
         projects: "ผลงาน",
       },
       tags: {
@@ -19,6 +20,7 @@ export default defineAstroI18nConfig({
     en: {
       nav: {
         home: "Home",
+        about: "About",
         projects: "Projects",
       },
       tags: {

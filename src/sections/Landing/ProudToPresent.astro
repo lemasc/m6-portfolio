@@ -1,11 +1,6 @@
 ---
-import { getI18nMarkdown } from "@/utils/i18n";
-
 import Tweet from "./Tweet.astro";
 import ProjectBlock from "./ProjectBlock.astro";
-
-const { data: station } = await getI18nMarkdown("projects", "pm-station");
-const { data: quiz } = await getI18nMarkdown("projects", "pm-online-quiz");
 ---
 
 <section id="proud-to-present">
@@ -18,8 +13,8 @@ const { data: quiz } = await getI18nMarkdown("projects", "pm-online-quiz");
         เพื่อนำไปพัฒนาไนผลงานชิ้นถัด ๆ ไป
       </p>
       <div class="grid lg:grid-cols-2 py-2 gap-5 lg:gap-6">
-        <ProjectBlock data={station} slug="pm-station" />
-        <ProjectBlock data={quiz} slug="pm-online-quiz" />
+        <ProjectBlock slug="pm-station" />
+        <ProjectBlock slug="pm-online-quiz" />
       </div>
     </div>
   </Tweet>

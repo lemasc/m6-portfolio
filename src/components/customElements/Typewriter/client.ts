@@ -12,7 +12,6 @@ export class TypewriterElement extends HTMLElement {
     const { strings } = JSON.parse(
       this.getAttribute("props") as string
     ) as TypewriterProps;
-    console.log("HEy");
     const typewriter = new TypewriterClass(element as HTMLElement, {
       strings,
       autoStart: true,

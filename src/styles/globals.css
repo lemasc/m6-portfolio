@@ -74,6 +74,6 @@
   @apply text-sm md:text-base;
 }
 
-article#project-contents a:not(.emgithub-file *) {
+article#project-contents a:not(.emgithub-file *):not([role="button"]) {
   @apply text-yellow-600 hover:text-yellow-700 underline;
 }

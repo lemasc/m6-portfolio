@@ -1,0 +1,104 @@
+---
+import { astroI18n, t } from "astro-i18n";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getI18nMarkdown } from "@/utils/i18n";
+import LazyLoadImage from "@/components/markdown/LazyLoadImage.astro";
+import { Image } from "@astrojs/image/components";
+
+astroI18n.init(Astro);
+
+const entry = await getI18nMarkdown("landing", "about");
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={t("index.projects.title")}>
+  <main class="flex flex-col flex-1 h-full min-h-screen">
+    <div
+      class="bg-yellow-50 w-full pt-24 pb-12 px-10 h-full min-h-[50vh] flex flex-col items-center justify-center"
+    >
+      <header
+        class="flex flex-col items-start justify-center gap-2 md:gap-4 w-full max-w-3xl 2xl:max-w-5xl"
+      >
+        <h1 class="text-yellow-600 pb-4">{t("index.about.title")}</h1>
+        <p
+          class="md:text-lg md:leading-7 max-w-2xl 2xl:max-w-4xl text-gray-700"
+        >
+          รู้จักเกี่ยวกับตัวผมให้มากขึ้นถึงความชอบและความสนใจในด้านต่าง ๆ
+          โดยเฉพาะทางด้านเทคโนโลยี
+        </p>
+      </header>
+    </div>
+    <div class="flex justify-center p-10">
+      <div class="w-full max-w-3xl 2xl:max-w-5xl flex flex-col gap-4 md:gap-6">
+        <section id="about-me" class="flex flex-row gap-4">
+          <div class="h-full w-1/2">
+            <Image
+              src="/images/about.jpg"
+              alt="about"
+              width={1080}
+              height={1080}
+            />
+          </div>
+          <article class="p-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
+            <b>ชื่อ :</b>
+            <span>นายศักดิธัช ธนาสดใส (ซาน)</span>
+            <b>ชั้น :</b><span>ม.6/1</span>
+            <b>แผนการเรียน :</b>วิทยาศาสตร์-คณิตศาสตร์
+            <b>สถานศึกษา:</b>
+            <span
+              >โรงเรียนมัธยมสาธิตวัดพระศรีมหาธาตุ มหาวิทยาลัยราชภัฏพระนคร</span
+            >
+            <b>อายุ :</b>
+            <span>17 ปี</span>
+            <b>เกิดวันที่ :</b>
+            <span>20 มกราคม พ.ศ. 2549</span>
+            <b>หมู่เลือด:</b>
+            <span> B</span>
+            <b>ส่วนสูง :</b>
+            <span>157 ซม.</span>
+            <b>น้ำหนัก :</b>
+            <span>52 กก.</span>
+            <b>งานอดิเรก:</b>
+            <span>เขียนโปรแกรมคอมพิวเตอร์ ร้องเพลง</span>
+            <b>Instagram:</b>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-yellow-600 hover:text-yellow-700 underline"
+              href="https://www.instagram.com/szzs1693"
+            >
+              @szzs1693
+            </a>
+          </article>
+        </section>
+        <section class="flex flex-col gap-4">
+          <h3>ประวัติการศึกษา</h3>
+          <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
+            <span>ประถมศึกษา : โรงเรียนบางบัวทองราษฎร์บำรุง</span>
+            <b>เกรดเฉลี่ย : 3.95</b>
+            <span
+              >มัธยมศึกษาตอนต้น : โรงเรียนมัธยมสาธิตวัดพระศรีมหาธาตุ
+              มหาวิทยาลัยราชภัฏพระนคร
+            </span>
+            <b>เกรดเฉลี่ย : 4.00</b>
+            <span
+              >มัธยมศึกษาตอนปลาย : โรงเรียนมัธยมสาธิตวัดพระศรีมหาธาตุ
+              มหาวิทยาลัยราชภัฏพระนคร
+            </span>
+            <b>เกรดเฉลี่ย (รวม 4 ภาคเรียน) : 3.97</b>
+          </div>
+        </section>
+        <section>
+          <article id="project-contents" class="space-y-4 md:space-y-6">
+            <Content
+              components={{
+                img: LazyLoadImage,
+              }}
+            />
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

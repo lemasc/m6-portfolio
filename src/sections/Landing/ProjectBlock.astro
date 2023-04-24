@@ -3,13 +3,14 @@ import { Image } from "@astrojs/image/components";
 import type { TypeOf } from "astro/zod";
 import type { projectSchema } from "@/content/config";
 import { l } from "astro-i18n";
+import { getI18nMarkdown, I18nEntry, ValidEntrySlug } from "@/utils/i18n";
 
 interface Props {
-  data: TypeOf<typeof projectSchema>;
-  slug: string;
+  slug: I18nEntry<ValidEntrySlug<"projects">>;
 }
 
-const { data, slug } = Astro.props;
+const { slug } = Astro.props;
+const { data } = await getI18nMarkdown("projects", slug);
 ---
 
 <div
@@ -36,6 +37,7 @@ const { data, slug } = Astro.props;
       <h3>{data.title}</h3>
       <p class="text-sm leading-6">{data.description}</p>
       <a
+        role="button"
         href={l("/projects/[slug]", {
           slug,
         })}
