@@ -69,12 +69,13 @@ const navigation: NavigationItem[] = [
       </a>
     </footer>
     <script>
-      import { swup } from "@/utils/swup.client";
+      import { swupStore } from "@/utils/swup";
+      import { initSwup } from "@/utils/swup.client";
       import { register } from "@/components/customElements";
-      window.swup = swup();
+      const swup = initSwup();
       const footer = document.querySelector("footer");
-      window.swup.on("contentReplaced", () => {
-        if (window.swup.currentPageUrl === "/") {
+      swup.on("contentReplaced", () => {
+        if (swup.currentPageUrl === "/") {
           footer?.classList.add("hidden");
           footer?.classList.remove("flex");
         } else {
@@ -82,6 +83,7 @@ const navigation: NavigationItem[] = [
           footer?.classList.add("flex");
         }
       });
+      swupStore.setState({ swup });
       register();
     </script>
   </body>

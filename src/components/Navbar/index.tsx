@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Disclosure, Transition } from "@headlessui/react";
 import { classNames } from "@/utils";
 import type { MatchedNavigationItem, NavigationItem } from "./types";
+import { swupStore } from "@/utils/swup";
 
 export function Navbar({
   navigation,
@@ -27,11 +28,11 @@ export function Navbar({
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof window.swup !== "undefined") {
-      window.swup.on("contentReplaced", () => {
-        setRoute(window.swup.currentPageUrl);
+    swupStore.subscribe(({ swup }) => {
+      swup?.on("contentReplaced", () => {
+        setRoute(swup.currentPageUrl);
       });
-    }
+    });
   }, []);
 
   const items: MatchedNavigationItem[] = useMemo(
@@ -54,7 +55,7 @@ export function Navbar({
             "transition-all ease-in duration-300"
           )}
         >
-          <div className="w-full px-4 lg:px-10 xl:px-14">
+          <div className="w-full px-4 lg:px-10">
             <div className="relative flex h-16 items-center justify-between my-2">
               <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
@@ -88,7 +89,7 @@ export function Navbar({
                           item.matched
                             ? "font-normal"
                             : "opacity-60 hover:opacity-100",
-                          "text-black drop-shadow-lg text-sm xl:text-base transition-all duration-300 ease-in"
+                          "text-black drop-shadow-xl text-sm xl:text-base transition-all duration-300 ease-in"
                         )}
                         aria-current={item.matched ? "page" : undefined}
                       >

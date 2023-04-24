@@ -6,7 +6,7 @@ import SwupScrollPlugin from "@swup/scroll-plugin";
 import SwupMetaTagsPlugin from "swup-meta-tags-plugin";
 import SwupScriptsPlugin from "@swup/scripts-plugin";
 
-export function swup() {
+export function initSwup() {
   return new Swup({
     plugins: [
       new SwupProgressPlugin(),
