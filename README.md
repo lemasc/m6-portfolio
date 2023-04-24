@@ -1,47 +1,74 @@
-# Astro Starter Kit: Minimal
+# Personal Portfolio Website
+
+Welcome to Sakditach Thanasodsai's Personal Porfolio Website.
+
+![Website Screenshot](./screenshot.png)
+
+## View my portfolio
+
+To visit my website, simply go to [my deployed website on Vercel](https://lemasc-m6-portfolio.vercel.app).
+
+## Development
+
+### Technologies used
+
+This project is a JavaScript based website created using the following technologies.
+
+- [Astro](https://astro.build/) for website framework. Includes built-in markdown content collection, which is the key to use in this project.
+- [TailwindCSS](https://tailwindcss.com/) for website styling.
+- [React](https://react.dev/) for some parts of this website interactivity.
+- [MDX](https://mdxjs.com/) is an advanced Markdown parser with JSX support.
+
+### Running the project locally
+
+First, install Node.js and Yarn. We use the latest stable version of Yarn for development.
+
+Clone the repository and run the following command to install any dependencies.
 
 ```
-npm create astro@latest -- --template minimal
+yarn
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+To start the development server, run the following command.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```
+yarn dev
+```
 
-## 🚀 Project Structure
+To build this website and prepare for deploying on Vercel, run the following command.
 
-Inside of your Astro project, you'll see the following folders and files:
+```
+yarn build
+```
+
+To start the production server, run the following command.
+
+```
+yarn start
+```
+
+### Project Structure
+
+Inside of the project, you'll see the following folders and files:
 
 ```
 /
 ├── public/
 ├── src/
+│   └── content/
 │   └── pages/
-│       └── index.astro
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The `content` folder contains markdown files used inside the website to be rendered using MDX. Usually articles are placed here.
+The `pages` folder contains pages to be rendered as a route.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Static assets, mostly images and videos, are placed in the `public/` directory.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Other folders are created to organize code, usually components.
 
-## 🧞 Commands
+This project has been setup to support internationalization (i18n) by using the `astro-i18n` package.
 
-All commands are run from the root of the project, from a terminal:
+## License
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
