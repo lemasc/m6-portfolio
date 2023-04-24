@@ -1,6 +1,6 @@
 import { getCollection, getEntryBySlug } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import type { collections } from "@/content/config";
+import type { collections, projectSchema } from "@/content/config";
 import { astroI18n } from "astro-i18n";
 
 export type I18nEntry<E> = E extends `${infer Lang}/${infer Entry}`
@@ -41,9 +41,9 @@ export async function getI18nMarkdownEntries<
   const entries = await getCollection<C, E>(
     collection,
     // @ts-expect-error Every entry contains a slug to validate
-    (entry: { slug: string }) => {
+    (entry: { slug: string; data: Zod.TypeOf<typeof projectSchema> }) => {
       const lang = entry.slug.split("/")[0];
-      return lang === language;
+      return lang === language && entry.data.draft !== true;
     }
   );
   return entries;

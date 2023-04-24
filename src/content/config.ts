@@ -9,6 +9,7 @@ export const projectSchema = z.object({
   gitUrl: z.string().optional(),
   publicUrl: z.string().optional(),
   rating: z.number(),
+  draft: z.boolean().optional(),
 });
 
 const landingCollection = defineCollection({});
