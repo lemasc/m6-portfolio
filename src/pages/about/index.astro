@@ -31,8 +31,11 @@ const { Content } = await entry.render();
     </div>
     <div class="flex justify-center p-10">
       <div class="w-full max-w-3xl 2xl:max-w-5xl flex flex-col gap-4 md:gap-6">
-        <section id="about-me" class="flex flex-row gap-4">
-          <div class="h-full w-1/2">
+        <section
+          id="about-me"
+          class="flex flex-col items-center lg:flex-row gap-8"
+        >
+          <div class="h-full max-w-sm">
             <Image
               src="/images/about.jpg"
               alt="about"
@@ -40,7 +43,9 @@ const { Content } = await entry.render();
               height={1080}
             />
           </div>
-          <article class="p-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
+          <article
+            class="w-full grid sm:grid-cols-[max-content_1fr] gap-x-4 gap-y-2"
+          >
             <b>ชื่อ :</b>
             <span>นายศักดิธัช ธนาสดใส (ซาน)</span>
             <b>ชั้น :</b><span>ม.6/1</span>
@@ -74,7 +79,7 @@ const { Content } = await entry.render();
         </section>
         <section class="flex flex-col gap-4">
           <h3>ประวัติการศึกษา</h3>
-          <div class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
+          <div class="grid 2xl:grid-cols-[max-content_1fr] gap-x-4 gap-y-2">
             <span>ประถมศึกษา : โรงเรียนบางบัวทองราษฎร์บำรุง</span>
             <b>เกรดเฉลี่ย : 3.95</b>
             <span
