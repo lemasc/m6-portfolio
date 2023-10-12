@@ -1,0 +1,11 @@
+.swup-progress-bar {
+  height: 4px;
+  @apply bg-yellow-600;
+}
+
+html.swup-enabled {
+  @apply transition-colors duration-300 ease-in-out;
+}
+html.swup-enabled.is-animating {
+  @apply bg-yellow-50;
+}

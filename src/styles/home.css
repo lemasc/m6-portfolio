@@ -1,0 +1,12 @@
+#student-council-intro article h2 {
+  @apply text-2xl sm:text-3xl lg:text-4xl;
+}
+
+#student-council-intro a {
+  @apply btn md:text-lg border border-white;
+  @apply hover:bg-white hover:bg-opacity-90 hover:text-black;
+  @apply focus:bg-white focus:bg-opacity-90 focus:text-black;
+}
+#student-council-intro article p:last-child {
+  @apply py-4;
+}
