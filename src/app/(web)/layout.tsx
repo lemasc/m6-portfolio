@@ -5,9 +5,7 @@ export default function WebLayout({ children }: { children: React.ReactNode }) {
     <div className="font-light flex flex-col h-full min-h-screen">
       <Navbar />
       <div id="swup" className={"h-full flex-1 flex-grow"}>
-        <main className="flex flex-col">
-          <div className="flex flex-col justify-center p-10">{children}</div>
-        </main>
+        {children}
       </div>
       <footer
         className={`flex border-yellow-100 bg-yellow-100/30 text-gray-700 space-y-2 text-sm flex-col items-center justify-center h-40`}
