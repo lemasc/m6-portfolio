@@ -1,4 +1,5 @@
 import { Transition } from "@headlessui/react";
+import { ArrowUpIcon } from "@heroicons/react/20/solid";
 
 export function GotoTop({ top }: { top: boolean }) {
   return (
@@ -22,7 +23,7 @@ export function GotoTop({ top }: { top: boolean }) {
         }
         className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-2 h-10 w-10 "
       >
-        <i className="fa-solid fa-arrow-up" />
+        <ArrowUpIcon className="h-6 w-6" />
       </button>
     </Transition>
   );

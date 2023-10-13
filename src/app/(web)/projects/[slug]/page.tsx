@@ -1,10 +1,29 @@
-import Link from "next/link";
+import { Metadata } from "next";
+import { getMDXComponent } from "next-contentlayer/hooks";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+import { mdxComponents } from "./components";
+import { getProject } from "./content";
+
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = getProject(params.slug);
+
+  return {
+    title: project.title,
+  };
+}
+
+export default function ProjectPage({ params }: Props) {
+  const project = getProject(params.slug);
+  const MDXContent = getMDXComponent(project?.body.code!);
   return (
     <>
-      <b>Project {params.slug} </b>
-      <Link href="/projects/test/details/1234">Details</Link>
+      <MDXContent components={mdxComponents} />
     </>
   );
 }

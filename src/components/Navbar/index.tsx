@@ -1,11 +1,16 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+
 import { Disclosure, Transition } from "@headlessui/react";
-import { classNames } from "@/utils";
-import type { MatchedNavigationItem } from "./types";
-import { GotoTop } from "./GoToTop";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+
+import { classNames } from "@/utils";
+
+import { GotoTop } from "./GoToTop";
 import { navigation } from "./navigation";
+import type { MatchedNavigationItem } from "./types";
 
 export function Navbar() {
   const [top, setTop] = useState(true);
@@ -58,15 +63,9 @@ export function Navbar() {
                   >
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <i
-                        className="fa-solid fa-xmark block fa-lg"
-                        aria-hidden="true"
-                      />
+                      <XMarkIcon className="w-6 h-6 block" aria-hidden="true" />
                     ) : (
-                      <i
-                        className="fa-solid fa-bars block fa-xl"
-                        aria-hidden="true"
-                      />
+                      <Bars3Icon className="w-6 h-6 block" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -74,7 +73,7 @@ export function Navbar() {
                   <div className="hidden lg:ml-6 lg:block">
                     <div className="flex space-x-10">
                       {items.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -86,7 +85,7 @@ export function Navbar() {
                           aria-current={item.matched ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -108,7 +107,7 @@ export function Navbar() {
                   {items.map((item) => (
                     <Disclosure.Button
                       key={item.name}
-                      as="a"
+                      as={Link}
                       href={item.href}
                       className={classNames(
                         item.matched
