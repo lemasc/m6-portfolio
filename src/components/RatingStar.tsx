@@ -15,7 +15,7 @@ export const RatingStar = ({
       {[...Array(5)].map((_, i) => (
         <StarIcon
           key={`star_${i}`}
-          className={`fa fa-star w-4 h-4 ${
+          className={`w-4 h-4 ${
             i < rating ? "text-yellow-400" : "text-gray-400"
           }`}
         />

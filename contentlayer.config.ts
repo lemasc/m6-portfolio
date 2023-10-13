@@ -16,9 +16,9 @@ export const Project = defineDocumentType(() => ({
     draft: { type: "boolean" },
   },
   computedFields: {
-    url: {
+    slug: {
       type: "string",
-      resolve: (post) => `/projects/${post._raw.flattenedPath}`,
+      resolve: (project) => project._raw.sourceFileName.replace(/\.mdx$/, ""),
     },
   },
   contentType: "mdx",

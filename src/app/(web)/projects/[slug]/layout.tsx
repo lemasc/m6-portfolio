@@ -7,7 +7,7 @@ import { getProject } from "./content";
 
 export async function generateStaticParams() {
   return allProjects.map((post) => ({
-    slug: post._raw.flattenedPath,
+    slug: post.slug,
   }));
 }
 
