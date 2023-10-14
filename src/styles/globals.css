@@ -29,7 +29,7 @@
     @apply list-disc;
   }
   ol,
-  ul {
+  ul:not(.toc) {
     @apply list-outside pr-2 pl-6 space-y-2 text-base;
   }
   li {
@@ -66,14 +66,31 @@
   }
 }
 
-.astro-code {
-  @apply px-4 py-2 md:py-4 rounded-lg;
+article#project-contents pre:has(code:not(.emgithub-code)) {
+  @apply px-4 py-2 md:py-4 rounded-lg text-sm md:text-base bg-gray-900 overflow-x-auto;
+}
+article#project-contents pre > code:not(.emgithub-code) {
+  @apply bg-gray-900 text-white;
 }
 
-.astro-code span {
-  @apply text-sm md:text-base;
-}
-
-article#project-contents a:not(.emgithub-file *):not([role="button"]) {
+article#project-contents a {
   @apply text-yellow-600 hover:text-yellow-700 underline;
+}
+
+article#project-contents .emgithub-container a {
+  @apply text-inherit no-underline;
+}
+
+article#project-contents > h2 > a {
+  @apply text-black no-underline hover:text-gray-800 hover:underline;
+}
+article#project-contents > h3 > a {
+  @apply no-underline hover:underline;
+}
+
+article#project-contents :target:before {
+  content: "";
+  display: block;
+  height: 100px; /* fixed header height*/
+  margin: -100px 0 0; /* negative fixed header height */
 }

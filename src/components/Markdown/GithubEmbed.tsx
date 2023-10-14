@@ -7,7 +7,10 @@ export default async function GithubEmbed(props: EmGithubSettings) {
       <div className="emgithub-file emgithub-file-light">
         <div className="file-data hljs-style-github">
           <pre className="p-4 leading-6 text-sm">
-            <code dangerouslySetInnerHTML={{ __html: html }}></code>
+            <code
+              className="emgithub-code"
+              dangerouslySetInnerHTML={{ __html: html }}
+            ></code>
           </pre>
         </div>
         <div className={`file-meta file-meta-light`}>

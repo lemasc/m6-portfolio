@@ -1,35 +1,20 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import { makeSource } from "contentlayer/source-files";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeImgSize from "rehype-img-size";
+import rehypeSlug from "rehype-slug";
 
-export const Project = defineDocumentType(() => ({
-  name: "Project",
-  filePathPattern: `projects/**/*.mdx`,
-  fields: {
-    title: { type: "string", required: true },
-    description: { type: "string", required: true },
-    releaseDate: { type: "date", required: true },
-    tags: { type: "list", of: { type: "string" }, required: true },
-    image: { type: "string" },
-    gitUrl: { type: "string" },
-    publicUrl: { type: "string" },
-    rating: { type: "number", required: true },
-    draft: { type: "boolean" },
-  },
-  computedFields: {
-    slug: {
-      type: "string",
-      resolve: (project) => project._raw.sourceFileName.replace(/\.mdx$/, ""),
-    },
-  },
-  contentType: "mdx",
-}));
+import { Project } from "./src/contentlayer/schema";
 
 export default makeSource({
   contentDirPath: "src/content",
   documentTypes: [Project],
   mdx: {
     //remarkPlugins: [remarkGfm],
-    // @ts-expect-error
-    rehypePlugins: [[rehypeImgSize, { dir: "public" }]],
+    rehypePlugins: [
+      // @ts-expect-error
+      [rehypeImgSize, { dir: "public" }],
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+    ],
   },
 });
