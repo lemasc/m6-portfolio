@@ -19,8 +19,10 @@ const MDXImage = ({
   width,
   height,
 }: JSX.IntrinsicElements["img"]) => {
-  const parsedWidth = typeof width === "string" ? parseInt(width) : width ?? 1920;
-  const parsedHeight = typeof height === "string" ? parseInt(height) : height ?? 1080;
+  const parsedWidth =
+    typeof width === "string" ? parseInt(width) : width ?? 1920;
+  const parsedHeight =
+    typeof height === "string" ? parseInt(height) : height ?? 1080;
 
   const dimensions = dimensionsWithMaxWidth(parsedWidth, parsedHeight);
 
@@ -28,6 +30,7 @@ const MDXImage = ({
     <Image
       src={src!}
       alt={alt ?? "Content Image"}
+      title={alt ?? "Content Image"}
       width={dimensions.width}
       height={dimensions.height}
     />

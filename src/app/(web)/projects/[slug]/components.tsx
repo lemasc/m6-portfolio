@@ -2,6 +2,7 @@ import { getMDXComponent } from "next-contentlayer/hooks";
 
 import MDXCode from "@/components/Markdown/MDXCode";
 import MDXImage from "@/components/Markdown/MDXImage";
+import ProjectDetails from "@/components/Markdown/ProjectDetails";
 import SmoothScrollLink from "@/components/Markdown/SmoothScrollLink";
 
 type MDXComponents = NonNullable<
@@ -14,6 +15,9 @@ export const mdxComponents: MDXComponents = {
   a: (props) => {
     if (props.href?.startsWith("#")) {
       return <SmoothScrollLink {...props} />;
+    }
+    if (props.href?.startsWith("/details")) {
+      return <ProjectDetails {...props} />;
     }
     return <a {...props} />;
   },

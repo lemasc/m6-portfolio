@@ -24,6 +24,7 @@ export default function SmoothScrollLink({
         });
         const currentURL = new URL(window.location.href);
         currentURL.hash = targetHref;
+        history.pushState(history.state, "", currentURL.toString());
       }
     }
   };
