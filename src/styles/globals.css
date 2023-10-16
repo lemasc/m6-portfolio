@@ -44,7 +44,7 @@
     @apply text-sm md:text-base break-all;
   }
   blockquote {
-    @apply bg-gray-100 p-4 pl-8 rounded text-gray-600 space-y-2;
+    @apply bg-gray-100 p-4 pl-8 rounded text-gray-700 space-y-2;
   }
 }
 
@@ -75,6 +75,10 @@ article#project-contents pre > code:not(.emgithub-code) {
 
 article#project-contents a {
   @apply text-yellow-600 hover:text-yellow-700 underline;
+}
+
+article#project-contents a.project-detail-btn {
+  @apply bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2 transition-colors no-underline;
 }
 
 article#project-contents .emgithub-container a {

@@ -4,7 +4,7 @@ import { getHeadings } from "./headings";
 
 export const Project = defineDocumentType(() => ({
   name: "Project",
-  filePathPattern: `projects/**/*.mdx`,
+  filePathPattern: `projects/**/*.content.mdx`,
   fields: {
     title: { type: "string", required: true },
     description: { type: "string", required: true },
@@ -15,11 +15,16 @@ export const Project = defineDocumentType(() => ({
     publicUrl: { type: "string" },
     rating: { type: "number", required: true },
     draft: { type: "boolean" },
+    // Work duration in weeks
+    workDuration: { type: "number" },
   },
   computedFields: {
     slug: {
       type: "string",
-      resolve: (project) => project._raw.sourceFileName.replace(/\.mdx$/, ""),
+      resolve: (project) =>
+        project._raw.sourceFileName
+          .replace(/\.mdx$/, "")
+          .replace(".content", ""),
     },
     headings: {
       type: "json",
